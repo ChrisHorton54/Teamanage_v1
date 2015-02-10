@@ -5,54 +5,81 @@
       <meta name="viewport" content="initial-scale=1" />
     <link href="../css/style_master.css" rel="stylesheet">
     <script type="text/javascript" src="../cordova.js"></script>
-<script id="template-list-found" type="x-recipe-template">
-    <img id="list-img" style="width:100%;" src="{*image*}" onclick="captureImage()" />
-    <form id="list-form"> 
-        <div id="list-name-content">
-            <h2>List Name</h2>
-            <input type="text" id="list-name" value="{*name*}"/>
-            <h2>List Content</h2>
-            <textarea>{*content*}</textarea>
-        </div>
-    </form>
-    <br/>
-    </script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
         // PhoneGap is ready
         function onDeviceReady() {
-            deviceLoad();
         }
         
-        window.onload = function (){
-            deviceLoad();
-            listsLoad();
+        window.onload = function(){
+            $('#club_name').html(localStorage.getItem('club_name'));
+            $(".menu").click(function(){
+                $("#popup-nav").fadeToggle("slow");
+            });
         }
     </script>
     </head>
     <body>
-    <nav class="menu">
-        <ul>
-            <li><a href="recipe-list.html" class="menu-link">Recipes</a></li>
-            <li><a href="favourites.html" class="menu-link">Favourites</a></li>
-            <li><a href="store-maps.html" class="menu-link">Store Map</a></li>
-            <li><a href="lists.html" class="menu-link">Lists</a></li>
-            <li><a href="index.html" class="menu-link">Sign Out</a></li>
-        </ul>
-    </nav><!-- /push menu left -->
-    <div id="wrapper">
-        <header>
-            <img class="slideout-toggle-back" src="img/back.png" alt="Menu" title="Menu" />
-            <h2 id="header-title">Lists</h2>
-            <img id="save-list" src="img/save.png" alt="Add" title="Add" style="width:35px;float:right;z-index:2;position:relative;"/>
-        </header>
-        <div class="content" id="list-content">
-            
+      <img src="../img/background.jpg" id="background" alt="background">
+      <header>
+        <img class="menu" src="../img/menu.png" alt="Menu" title="Menu" />
+        <h2 id="club_name"></h2>
+          <a href="list-item.html"><img class="add-player" src="../img/add.png" alt="New Player" title="New Player" /></a>
+        <div id="popup-nav">
+            <div id="popup-nav-content">
+                <img src="../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
+                <a href="squad.html"><div class="nav-block first">
+                        <img src="../img/squad-nav.jpg" title="Squad" alt="Squad" />
+                        <h3>Squad</h3>
+                    </div></a> 
+                <a href=""><div class="nav-block second">
+                        <img src="../img/events-nav.jpg" title="Events" alt="Events" />
+                        <h3>Events</h3>
+                    </div></a> 
+                <a href=""><div class="nav-block third">
+                        <img src="../img/finances-nav.jpg" title="Finances" alt="Finances" />
+                        <h3>Finances</h3>
+                    </div></a>
+                <div class="clear"></div>
+                <a href=""><div class="nav-block first">
+                        <img src="../img/doc-nav.jpg" title="Documents" alt="Documents" />
+                        <h3>Documents</h3>
+                    </div></a> 
+                <a href=""><div class="nav-block second">
+                        <img src="../img/stats-nav.jpg" title="Stats" alt="Stats" />
+                        <h3>Stats</h3>
+                    </div></a>
+                <a href=""><div class="nav-block third">
+                        <img src="../img/gallery-nav.jpg" title="Gallery" alt="Gallery" />
+                        <h3>Gallery</h3>
+                    </div></a>
+                <div class="clear"></div>
+                <a href=""><div class="nav-block first">
+                        <img src="../img/fantalk-nav.jpg" title="Fan Talk" alt="Fan Talk" />
+                        <h3>Fan Talk</h3>
+                    </div></a>
+                <div class="nav-block second log-out">
+                        <img src="../img/fantalk-nav.jpg" title="Log Out" alt="Log Out" />
+                        <h3>Log Out</h3>
+                    </div>
+            </div>
         </div>
-    </div><!-- /#wrapper -->
-        <script type="text/javascript" src="../js/deviceLoad.js"></script>
-    <script type="text/javascript" src="../js/list-item.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../js/capture-phonegap.js"></script>
+      </header>
+      <div class="section">
+          <h2>Players</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+              <p>View Players</p>
+                <ul>
+                    <a href=""><li><p id="player_amount">1</p><img src="../img/arrow-list.png" /><div class="clear"></div></li></a>
+                </ul>
+            </div>
+        </div>
+      </div>
+      
+      <script type="text/javascript" src="../js/management/squad.js"></script>
+      <script type="text/javascript" src="../js/teamanage.js"></script>
   </body>
 </html>
