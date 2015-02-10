@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MasterCook</title>
+    <meta name="viewport" content="initial-scale=1"/>
+      <!-- Launch Image - displayed while the app is launching -->
+      <link rel="apple-touch-startup-image" href="landing.png">
+    <!-- Chrome on Android, Safari on iOS, from Mathias Bynens' research: -->
+    <!-- For Chrome for Android: -->
+    <link rel="icon" sizes="192x192" href="icon.png">
+    <!-- For iPhone 6 Plus with @3× display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="icon.png">
+    <!-- For iPad with @2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="icon.png">
+    <!-- For iPad with @2× display running iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icon.png">
+    <!-- For iPhone with @2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="icon.png">
+    <!-- For iPhone with @2× display running iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon.png">
+    <!-- For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="icon.png">
+    <!-- For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="aiconosed.png">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon-precomposed" href="icon.png"><!-- 57×57px -->
+    <link rel="stylesheet" href="css/index.css" type="text/css" /> 
+    <script type="text/javascript" charset="utf-8">
+        // Wait for PhoneGap to load     
+        document.addEventListener("deviceready", onDeviceReady, false);
+        
+        // PhoneGap is ready
+        function onDeviceReady() {
+            mockAjaxRequest();
+            appStart();
+        }
+        
+        window.onload = function(){
+            mockAjaxRequest();
+            appStart();
+        }
+  
+    </script>
+  </head>
+  <body>
+      <div class="login">
+          <div id="login-form" > 
+              <h1>Mastercook</h1>
+            <div id="login-inputs">
+                <input type="email" name="email" id="email" placeholder="Email Address"/>
+                <div class="clear"></div>
+                <input type="password" name="password" id="password" value="" placeholder="Password"/>
+            </div>
+            <div class="clear"></div>
+            <div id="login-sign-btns">
+                <input type="submit" value="Sign Up" id="sign-up-btn">
+                <input type="submit" value="Login" id="login-btn">
+            </div>
+            <div id="loading-icon">
+                <img id="loading" src="img/loading36.gif"/>    
+            </div>
+          </div>
+           <div id="sign-up-form" > 
+              <h1>Mastercook</h1>
+            <div id="login-inputs">
+                <input type="tel" name="signup-tel" id="signup-tel" placeholder="Telephone Number" />
+                <div class="clear"></div>
+                <input type="email" name="sign-email" id="sign-email" placeholder="Email Address" />
+                <div class="clear"></div>
+                <input type="password" name="signup-password" id="signup-password" value="" placeholder="Password" />
+                <div class="clear"></div>
+                <input type="password" name="confirm-password" id="confirm-password" value="" placeholder="Confirm Password" />
+            </div>
+            <div class="clear"></div>
+            <div id="login-sign-btns">
+                <input type="submit" value="Sign Up" id="sign-up-btn-full-width">
+            </div>
+            <div id="loading-icon-sign">
+                <img id="loading-sign" src="img/loading36.gif"/>    
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript" src="phonegap.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Index</title>
+    <meta name="viewport" content="initial-scale=1" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" /> 
+    <link rel="stylesheet" href="css/listings.css" type="text/css" /> 
+    <script id="template-list-found" type="x-recipe-template">
+    <button class="captureButton" onclick="captureImage();">Capture Photo</button>
+    <img id="list-img" style="width:100%;" src="{*image*}" onclick="captureImage()" />
+    <form id="list-form"> 
+        <div id="list-name-content">
+            <input type="text" id="list-name" value="{*name*}"/>
+            <h2>List Content</h2>
+            <textarea>{*content*}</textarea>
+        </div>
+    </form>
+    <br/>
+    </script>
+    <script type="text/javascript" charset="utf-8">
+        // Wait for PhoneGap to load     
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // PhoneGap is ready
+        function onDeviceReady() {
+            deviceLoad();
+            listsLoad();
+        }
+        
+        window.onload = function (){
+            deviceLoad();
+            listsLoad();
+        }
+    </script>
+    </head>
+    <body>
+    <nav class="menu">
+        <ul>
+            <li><a href="recipe-list.html" class="menu-link">Recipes</a></li>
+            <li><a href="favourites.html" class="menu-link">Favourites</a></li>
+            <li><a href="store-maps.html" class="menu-link">Store Map</a></li>
+            <li><a href="lists.html" class="menu-link">Lists</a></li>
+            <li><a href="index.html" class="menu-link">Sign Out</a></li>
+        </ul>
+    </nav><!-- /push menu left -->
+    <div id="wrapper">
+        <header>
+            <img class="slideout-toggle-back" src="img/back.png" alt="Menu" title="Menu" />
+            <h2 id="header-title">Lists</h2>
+            <img id="save-list" src="img/save.png" alt="Add" title="Add" style="width:35px;float:right;z-index:2;position:relative;"/>
+        </header>
+        <div class="content" id="list-content">
+            
+        </div>
+    </div><!-- /#wrapper -->
+    <!-- js -->
+    <script type="text/javascript" src="js/deviceLoad.js"></script>
+    <script type="text/javascript" src="js/list-item.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/capture-phonegap.js"></script>
+    </body>
+</html>
