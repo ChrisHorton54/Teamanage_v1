@@ -1,87 +1,118 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MasterCook</title>
-    <meta name="viewport" content="initial-scale=1"/>
-      <!-- Launch Image - displayed while the app is launching -->
-      <link rel="apple-touch-startup-image" href="landing.png">
-    <!-- Chrome on Android, Safari on iOS, from Mathias Bynens' research: -->
-    <!-- For Chrome for Android: -->
-    <link rel="icon" sizes="192x192" href="icon.png">
-    <!-- For iPhone 6 Plus with @3× display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="icon.png">
-    <!-- For iPad with @2× display running iOS ≥ 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="icon.png">
-    <!-- For iPad with @2× display running iOS ≤ 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="icon.png">
-    <!-- For iPhone with @2× display running iOS ≥ 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="icon.png">
-    <!-- For iPhone with @2× display running iOS ≤ 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon.png">
-    <!-- For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7: -->
-    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="icon.png">
-    <!-- For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≤ 6: -->
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="aiconosed.png">
-    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
-    <link rel="apple-touch-icon-precomposed" href="icon.png"><!-- 57×57px -->
-    <link rel="stylesheet" href="css/index.css" type="text/css" /> 
+    <title>Teamanage</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
         
         // PhoneGap is ready
         function onDeviceReady() {
-            mockAjaxRequest();
-            appStart();
         }
         
         window.onload = function(){
-            mockAjaxRequest();
-            appStart();
         }
-  
     </script>
   </head>
   <body>
-      <div class="login">
-          <div id="login-form" > 
-              <h1>Mastercook</h1>
-            <div id="login-inputs">
-                <input type="email" name="email" id="email" placeholder="Email Address"/>
-                <div class="clear"></div>
-                <input type="password" name="password" id="password" value="" placeholder="Password"/>
+      <img src="img/index/grass-bg.jpg" id="background" alt="background">
+      <div class="select-login">
+        <div class="logo">
+            <img src="img/index/logo.png" title="Teamanage" alt="teamanage" /> 
+        </div>
+          <div class="clear"></div>
+          <div class="select-type">
+            <div class="type-management">
+                <h2>Management</h2>
             </div>
-            <div class="clear"></div>
-            <div id="login-sign-btns">
-                <input type="submit" value="Sign Up" id="sign-up-btn">
-                <input type="submit" value="Login" id="login-btn">
+            <div class="type-player">
+                <h2>Player</h2>
             </div>
-            <div id="loading-icon">
-                <img id="loading" src="img/loading36.gif"/>    
-            </div>
-          </div>
-           <div id="sign-up-form" > 
-              <h1>Mastercook</h1>
-            <div id="login-inputs">
-                <input type="tel" name="signup-tel" id="signup-tel" placeholder="Telephone Number" />
-                <div class="clear"></div>
-                <input type="email" name="sign-email" id="sign-email" placeholder="Email Address" />
-                <div class="clear"></div>
-                <input type="password" name="signup-password" id="signup-password" value="" placeholder="Password" />
-                <div class="clear"></div>
-                <input type="password" name="confirm-password" id="confirm-password" value="" placeholder="Confirm Password" />
-            </div>
-            <div class="clear"></div>
-            <div id="login-sign-btns">
-                <input type="submit" value="Sign Up" id="sign-up-btn-full-width">
-            </div>
-            <div id="loading-icon-sign">
-                <img id="loading-sign" src="img/loading36.gif"/>    
+            <div class="type-fan">
+                <h2>Fan</h2>
             </div>
           </div>
       </div>
+      <div class="login-mask"></div>
+      <div class="management-login">
+          <h2>Management</h2>
+          <img class="close" src="img/index/cross.png" alt="close" title="close" />
+          <div class="clear"></div>
+          <div class="management-form">
+            <input type="email" id="email_address" placeholder="Email Address" />
+              <div class="clear"></div>
+            <input type="password" id="password" placeholder="Password" />
+              <div class="clear"></div>
+              <input type="checkbox" name="remember_me" id="remember_me" value="1"><p>Remember Me</p>
+              <br/><br/>
+              <a href="#" class="submit management-submit" ><p>Log In</p></a>
+              <br/>
+              <a href="#" class="submit management-sign-up" ><p>Sign Up</p></a>
+          </div>
+          <div class="management-sign-up-form">
+            <input type="email" id="email_address" placeholder="Email Address" />
+            <div class="clear"></div>
+            <input type="password" id="password" placeholder="Password" />
+            <div class="clear"></div>
+            <input type="password" id="confirm_password" placeholder="Confirm Password" />
+            <div class="clear"></div>
+            <input type="text" id="team_name" placeholder="Team Name" />
+              <br/><br/>
+              <br/>
+              <a href="#" class="submit management-signing" ><p>Sign Up</p></a>
+          </div>
+      </div>
+      <div class="player-login">
+          <h2>Player</h2>
+          <img class="close" src="img/index/cross.png" alt="close" title="close" />
+          <div class="clear"></div>
+          <div class="player-form">
+            <input type="email" id="email_address" placeholder="Email Address" />
+              <div class="clear"></div>
+            <input type="password" id="password" placeholder="Password" />
+            <br/><br/>
+              <a href="#" class="submit player-submit" ><p>Log In</p></a>
+          </div>
+      </div>
+      <div class="fan-login">
+          <h2>Fan</h2>
+          <img class="close" src="img/index/cross.png" alt="close" title="close" />
+          <div class="clear"></div>
+          <div class="fan-form">
+            <input type="email" id="email_address" placeholder="Email Address" />
+              <div class="clear"></div>
+            <input type="password" id="password" placeholder="Password" />
+              <div class="clear"></div>
+            <input type="checkbox" name="remember_me" id="remember_me" value="1"><p>Remember Me</p>
+              <br/><br/>
+              <a href="#" class="submit fan-submit" ><p>Log In</p></a>
+              <br/>
+              <a href="#" class="submit fan-sign-up" ><p>Sign Up</p></a>
+          </div>
+          <div class="fan-sign-up-form">
+            <input type="text" id="fan_name" placeholder="Your Name" />
+            <div class="clear"></div>
+            <input type="email" id="email_address" placeholder="Email Address" />
+              <div class="clear"></div>
+            <input type="password" id="password" placeholder="Password" />
+            <div class="clear"></div>
+            <input type="password" id="confirm_password" placeholder="Confirm Password" />
+            <div class="clear"></div>
+            <br/>
+            <select id="clubs">
+                <option value="" disabled selected>Select Team</option>
+            </select>
+              <br/><br/>
+              <br/>
+              <a href="#" class="submit fan-signing" ><p>Sign Up</p></a>
+          </div>
+      </div>
+      <script type="text/javascript" src="js/index.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="cordova.js"></script>
-      <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

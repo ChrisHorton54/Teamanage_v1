@@ -1,1 +1,201 @@
-@import "http://fonts.googleapis.com/css?family=Roboto:400,700,300";*{font-family:Roboto}html{background:url(../img/banana.jpg) no-repeat fixed;position:fixed;top:0;left:0;min-width:100%;min-height:100%}.login{position:relative;height:100%;width:100%}#login-form,#sign-up-form{width:280px;margin:auto;position:relative;top:60px;left:0;right:0;transition:opacity 1s ease-in-out;-moz-transition:opacity 1s ease-in-out;-webkit-transition:opacity 1s ease-in-out}#login-form{opacity:1}#sign-up-form{display:none;opacity:0}#login-form #logo{display:block;margin:0 auto;margin-bottom:20px}#login-form h1,#sign-up-form h1{margin:0 auto;padding-bottom:12px;text-align:center}#login-inputs input{width:260px;background:rgba(0,0,0,0.42);height:25px;border:none;color:#FFF;box-shadow:3px 3px 5px #000;padding:10px;margin-bottom:10px;border-radius:6px}#login-inputs input.text{padding:5px}textarea:focus,input:focus{outline:0}#login-sign-btns{width:100%}#login-sign-btns #sign-up-btn,#login-sign-btns #login-btn,#login-sign-btns #sign-up-btn-full-width{width:140px;padding:10px 0;background:#B3FF46;background:-webkit-gradient(linear,left top,left bottom,color-stop(#B3FF46,0),color-stop(#7FC56F,1));background:-webkit-linear-gradient(top,#B3FF46 0%,#7FC56F 100%);background:-moz-linear-gradient(top,#B3FF46 0%,#7FC56F 100%);background:-o-linear-gradient(top,#B3FF46 0%,#7FC56F 100%);background:linear-gradient(top,#B3FF46 0%,#7FC56F 100%);display:inline-block;position:relative;border:1px solid #18C300;box-shadow:0 1px 1px rgba(255,255,255,0.8) inset,1px 1px 3px rgba(0,0,0,0.2);float:left;font-size:17px;text-shadow:0 1px 1px rgba(255,255,255,0.3);color:#344C69;-webkit-transition:all .2s linear;-moz-transition:all .2s linear;-o-transition:all .2s linear;transition:all .2s linear;cursor:pointer}#login-sign-btns #sign-up-btn-full-width{width:100%;border-radius:5px}#login-sign-btns #sign-up-btn{border-top-left-radius:5px;border-bottom-left-radius:5px}#login-sign-btns #login-btn{border-top-right-radius:5px;border-bottom-right-radius:5px}#loading-icon,#loading-icon-sign{position:absolute;top:4px;left:-3px;height:162%;width:103%;background:rgba(0,0,0,0.5);border-radius:5px;display:none;opacity:0;transition:opacity 1s ease-in-out;-moz-transition:opacity 1s ease-in-out;-webkit-transition:opacity 1s ease-in-out}#loading-icon img,#loading-icon-sign img{position:absolute;left:27%;top:20%}#login-inputs #signup-password,#login-inputs #confirm-password{width:110px;float:left}#login-inputs #signup-password{margin-right:20px}@media all and (min-width: 480px){#login-inputs input{float:left;width:41%}#login-inputs #email{margin-right:16px}#login-form,#sign-up-form{width:360px}#login-sign-btns #sign-up-btn,#login-sign-btns #login-btn{width:177px}#login-inputs #signup-tel{margin-right:20px}#login-inputs #signup-password,#login-inputs #confirm-password{width:41%}#loading-icon{height:294%;width:102%}#loading-icon-sign{height:388%;width:102%}#loading-icon img{left:32%;top:12%}#loading-icon-sign img{left:32%}}
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('../fonts/roboto-light-webfont.ttf');
+}
+
+body{
+    font-family: 'RobotoLight';
+    margin: 0;
+}
+
+textarea:focus, input:focus{
+    outline: 0;
+}
+
+#background {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.clear{
+    clear: both;
+}
+
+.select-login{
+    position: relative;
+}
+
+.select-login .logo img{
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50px;
+    width: 50%;
+}
+
+.select-type{
+    position: fixed;
+    bottom: 0;
+    width:100%;
+}
+
+.select-type .type-management, .select-type .type-player, .select-type .type-fan{
+    padding: 5px 0px;
+}
+
+.select-type .type-management h2, .select-type .type-player h2, .select-type .type-fan h2{
+    text-decoration: none;
+    color: #FFFFFF;
+    text-align: center;
+    cursor:pointer;
+}
+
+.select-type .type-management{
+    background: rgba(146, 182, 255, 0.8);
+}
+
+.select-type .type-player{
+    background: rgba(146, 182, 255, 0.6);
+}
+
+.select-type .type-fan{
+    background: rgba(146, 182, 255, 0.4);
+}
+
+.management-login, .player-login, .fan-login{
+    display:none;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.management-login h2, .player-login h2, .fan-login h2{
+    color:#FFFFFF;
+    padding: 0px 20px;
+    float:left;
+}
+
+.management-login .close, .player-login .close, .fan-login .close{
+    float: right;
+    position: relative;
+    top: 20px;
+    right: 20px;
+}
+
+.management-login .management-form, .player-login .player-form, .fan-login .fan-form{
+    padding: 0px 20px;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+    opacity: 1;
+}
+
+.management-login .management-sign-up-form, .fan-login .fan-sign-up-form{
+    display:none;
+    padding: 0px 20px;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+    opacity: 0;
+}
+
+.management-login .management-form.log-in-deactive, .player-login .player-form.log-in-deactive, .fan-login .fan-form.log-in-deactive{
+    opacity: 0;
+}
+
+.management-login .management-sign-up-form.sign-up-active, .fan-login .fan-sign-up-form.sign-up-active{
+    opacity: 1;
+}
+
+.management-login .management-form input, .player-login .player-form input, .fan-login .fan-form input, .management-login .management-sign-up-form input, .fan-login .fan-sign-up-form input{
+    background: white;
+    background: rgba(146, 182, 255, 0.4);
+    width: 95%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid rgba(20, 39, 12, 0.25);
+    font-family: 'RobotoLight';
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.fan-login .fan-sign-up-form select{
+    background: white;
+    background: rgba(146, 182, 255, 0.4);
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid rgba(20, 39, 12, 0.25);
+    font-family: 'RobotoLight';
+    font-size: 16px;
+    color: #FFFFFF;
+}
+
+.fan-login .fan-sign-up-form select option{
+    background: white;
+    background: rgba(71, 95, 107, 1);
+}
+
+.management-login .management-form input[type="checkbox"], .player-login .player-form input[type="checkbox"], .fan-login .fan-form input[type="checkbox"]{
+    width:5%;
+    float: left;
+}
+
+.management-login .management-form p, .player-login .player-form p, .fan-login .fan-form p{
+    color: #FFFFFF;
+}
+
+
+
+.management-login .management-form .submit, .player-login .player-form .submit, .fan-login .fan-form .submit, .management-login .management-sign-up-form .submit, .fan-login .fan-sign-up-form .submit{
+    width: 80%;
+    margin: 0 auto;
+    display:block;
+    background: #39b54a;
+    font-family: 'RobotoLight';
+    font-size: 16px;
+    color: #FFFFFF;
+    height: 50px;
+    text-decoration: none;
+}
+
+.management-login .management-form .submit p, .player-login .player-form .submit p, .fan-login .fan-form .submit p, .management-login .management-sign-up-form .submit p, .fan-login .fan-sign-up-form .submit p{
+    margin: 0;
+    position: relative;
+    top: 13px;
+    text-align: center;
+}
+
+.login-active{
+    opacity:1;
+}
+
+.login-mask{
+    display: none;
+    background: #000000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.mask-active{
+     opacity: 0.7;
+}
