@@ -77,7 +77,7 @@ function getPhoto(source)
 {
     var cameraSource;
     
-    cameraSource = pictureSource.PHOTOLIBRARY;
+    cameraSource = pictureSourceType.PHOTOLIBRARY;
     
     navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
     destinationType: destinationType.FILE_URI,
