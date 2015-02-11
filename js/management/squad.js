@@ -62,7 +62,7 @@ function captureSuccess(mediaFiles) {
 }
 
 function uploadFile(mediaFile) {
-    console.log(mediaFile);
+    console.log(mediaFile,name);
     var clubID = localStorage.getItem("clubID");
     
     path = mediaFile.fullPath;
@@ -130,7 +130,7 @@ function uploadPhotoLib(imageURI) {
     var ft = new FileTransfer();
     ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
-            alert("Success"); 
+            alert("Success"); one.COMMENT_NODE
         },
         function(error) {
             alert("Error");
@@ -138,5 +138,5 @@ function uploadPhotoLib(imageURI) {
         },
         options
         );
-    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + imageURI + ".jpg");
+    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + imageURI);
 }
