@@ -50,7 +50,7 @@ function returnPlayerAmount(data){
 }
 
 function captureImage(){
-    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
+    navigator.device.capture.captureImage(captureSuccess, onFail, { limit: 1 });
 }
 
 function onFail(message) {
