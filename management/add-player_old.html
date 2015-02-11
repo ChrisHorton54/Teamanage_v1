@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>List Item</title>
-      <meta name="viewport" content="initial-scale=1" />
-    <link href="../css/style_master.css" rel="stylesheet">
+    <title>Teamanage - Squads</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
+        
         // PhoneGap is ready
         function onDeviceReady() {
         }
@@ -20,8 +22,8 @@
             });
         }
     </script>
-    </head>
-    <body>
+  </head>
+  <body>
       <img src="../img/background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../img/menu.png" alt="Menu" title="Menu" />
@@ -102,7 +104,10 @@
             </div>
         </div>
       </div>
+      <script type="text/javascript" src="../phonegap.js"></script>
+    <script type="text/javascript" src="../cordova.js"></script>
       <script type="text/javascript" src="../js/management/squad.js"></script>
+      <script type="text/javascript" src="../js/management/capture-image.js"></script>
       <script type="text/javascript" src="../js/teamanage.js"></script>
   </body>
 </html>
