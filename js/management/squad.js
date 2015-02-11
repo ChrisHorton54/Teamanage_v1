@@ -55,7 +55,7 @@ $(document).ready(function(){
         
         if(errors.length > 0){
             for(var i = 0; i < errors.length; i++){
-                error_message = error_message.concat(errors[i] + "\n");
+               error_message = error_message.concat(errors[i] + "\n");
             }
             
             alert(error_message);
@@ -78,7 +78,7 @@ function addNewPlayer(data){
         alert("The Email Address provided is already in use.");
     } else {
         alert("Player has been added to your club!");
-        window.location = "management/all-players.html";
+        window.location = "../management/all-players.html";
     }
 }
 
@@ -92,6 +92,7 @@ function playerAmount(){
             returnPlayerAmount(data);
         }
     }); 
+    
 }
 
 function returnPlayerAmount(data){
