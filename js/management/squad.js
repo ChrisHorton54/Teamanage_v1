@@ -104,20 +104,39 @@ function getPhoto(source)
 {
     var cameraSource;
     var destinationType;
+    var clubID = localStorage.getItem("clubID");
     
     cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
     destinationType = navigator.camera.DestinationType;
     
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+    navigator.camera.getPicture(uploadPhotoLib, onFail, { quality: 50, 
     destinationType: destinationType.FILE_URI,
     sourceType: cameraSource});
 }
 
-function onPhotoURISuccess(imageURI) 
-{
-    console.log(imageURI);
-    $("#player_image-src").attr("src",imageURI);
-    largeImage.src = imageURI;
-    uploadFile(imageURI);
-}
+function uploadPhotoLib(imageURI) {
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+    options.mimeType="image/jpeg";
 
+    var params = new Object();
+    params.value1 = "test";
+    params.value2 = "param";
+
+    options.params = params;
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
+        function(result) {
+            alert("Success"); 
+        },
+        function(error) {
+            alert("Error");
+            console.log(error);
+        },
+        options
+        );
+    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + imageURI + ".jpg");
+}
