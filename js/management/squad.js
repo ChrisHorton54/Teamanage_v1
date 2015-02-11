@@ -1,7 +1,4 @@
 $(document).ready(function(){
-    
-    var pictureSource = navigator.camera.PictureSourceType;
-    
     playerAmount();
     
     $("#player_image-src").click(function(){
@@ -20,7 +17,7 @@ $(document).ready(function(){
         
         setTimeout(function(){
             $(".select-photo-type").css("display","none");
-            getPhoto(pictureSource.PHOTOLIBRARY);
+            getPhoto();
         }, 700);
     });
     
@@ -78,9 +75,13 @@ function getBase64Image(img) {
 
 function getPhoto(source) 
 {
+    var cameraSource;
+    
+    cameraSource = pictureSource.PHOTOLIBRARY;
+    
     navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
     destinationType: destinationType.FILE_URI,
-    sourceType: source });
+    sourceType: cameraSource});
 }
 
 function onPhotoURISuccess(imageURI) 
