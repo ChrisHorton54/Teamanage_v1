@@ -13,6 +13,6 @@ function onFail(message) {
 }
 
   function uploadFile(mediaFile) {
-    var imgData = mediaFile;
-    $(".player-image img").attr("src","data:image/png;base64," + imgData);
+      alert("Chris Test");
+      console.log(mediaFile);
   }
