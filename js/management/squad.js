@@ -82,7 +82,7 @@ function uploadFile(mediaFile) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload( path, "teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
+    ft.upload( path, "teamanage.co.uk/scripts/management/upload_file.php?id=1",
         function(result) {
             alert("Success"); 
             location.reload();
