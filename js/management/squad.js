@@ -50,50 +50,34 @@ function returnPlayerAmount(data){
 }
 
 function captureImage(){
-    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    navigator.camera.getPicture(uploadFile, onFail, { quality: 50,
         destinationType: Camera.DestinationType.DATA_URL
     });
-}
-
-function onSuccess(imageData) {
-    uploadFile(imageData);
 }
 
 function onFail(message) {
     alert('Failed because: ' + message);
 }
 
-function uploadFile(mediaFile) {
+function uploadFile(imageURI) {
     
-    var imgData = getBase64Image(mediaFile);
-    console.log("data:image/png;base64," + imgData);
-    $("#player_image-src").attr("src","data:image/png;base64," + imgData);
+    /* var imgData = getBase64Image(mediaFile);
+    $("#player_image-src").attr("src","data:image/png;base64," + imgData); */
     
-    path = mediaFile.fullPath;
-    name = mediaFile.name;
-
     var options = new FileUploadOptions();
-    options.fileKey="file";
-    options.fileName=mediaFile.name;
-    options.mimeType="image/jpeg";
-
-    var params = new Object();
-    params.fullpath = path;
-    params.name = name;
-
-    options.params = params;
-    options.chunkedMode = false;
-
-    var ft = new FileTransfer();
-    ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=h003945",
-        function(result) {
-            alert("Success"); 
-        },
-        function(error) {
-            alert("Error");
-        },
-        options
-        );
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="image/jpeg";
+ 
+        var params = new Object();
+        params.value1 = "test";
+        params.value2 = "param";
+ 
+        options.params = params;
+        options.chunkedMode = false;
+ 
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://teamanage.co.uk/files/scripts/management/upload_file.php", win, fail, options);
 }
 
 
