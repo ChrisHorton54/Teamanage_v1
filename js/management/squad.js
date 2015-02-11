@@ -89,6 +89,7 @@ function uploadFile(mediaFile) {
         },
         function(error) {
             alert("Error");
+            console.log(error);
         },
         options
         );
