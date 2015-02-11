@@ -1,7 +1,7 @@
 $(document).ready(function(){
     playerAmount();
     
-    $("#player_image-src").click(function({
+    $("#player_image-src").click(function(){
         $(".select-photo-type").css("display","block");
         
         setTimeout(function(){
@@ -10,7 +10,10 @@ $(document).ready(function(){
                                  
     });
     
-    $(".photo-lib").click(function({
+    $(".photo-lib").click(function(){
+    });
+    
+    $(".photo-camera").click(function(){
         if($(".select-photo-type").hasClass("active")){
             $(".select-photo-type").removeClass("active");
         }
@@ -19,9 +22,6 @@ $(document).ready(function(){
             $(".select-photo-type").css("display","none");
             captureImage();
         }, 700);
-    });
-    
-    $(".photo-camera").click(function({
     });
 });
 
