@@ -31,7 +31,56 @@ $(document).ready(function(){
             captureImage();
         }, 700);
     });
+    
+    $(".player-submit").click(function(){
+        var player_name = $("#player-name-section #player-name").val();
+        var player_email = $("#player-email-section #player-email").val();
+        var player_des = $("#player-description-section #player-description").val();
+        var player_pos = $("#position option:selected").val();
+        var player_image = $("#player_image-src").attr("src");
+        var clubID = localStorage.getItem("clubID");
+        
+        var errors = [];
+        var error_message = "Please fix the following:\n\n";
+        
+        if(player_name == ""){
+            errors.push("Player Name");
+        }
+        if(!emailChecker(player_email)){
+            errors.push("Player Email");
+        }
+        if(player_des == ""){
+            errors.push("Player Description");
+        }
+        
+        if(errors.length > 0){
+            for(var i = 0; i < errors.length; i++){
+                error_message = error_message.concat(errors[i] + "\n");
+            }
+            
+            alert(error_message);
+        } else {
+            $.ajax({
+                url:"http://teamanage.co.uk/scripts/management/add-player.php",
+                type: "POST",
+                data: { player_name: player_name, player_email: player_email, player_des: player_des, player_pos: player_pos, player_image: player_image, clubID: clubID},
+                success:function(data){
+                    addNewPlayer(data);
+                }
+            }); 
+        }
+    });
 });
+
+function addNewPlayer(data){
+    var information = JSON.parse(data);
+    if(information['error_email'] == "true"){
+        alert("The Email Address provided is already in use.");
+    } else {
+        alert("Player has been added to your club!");
+        window.location = "management/all-players.html";
+    }
+}
 
 function playerAmount(){
     var clubID = localStorage.getItem("clubID");
@@ -92,7 +141,7 @@ function uploadFile(mediaFile) {
         options
         );
     
-    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + name + ".jpg");
+    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + name);
     
 }
 
@@ -139,4 +188,9 @@ function uploadPhotoLib(imageURI) {
         options
         );
     $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName);
+}
+
+function emailChecker(email) {
+  var pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return pattern.test(email);
 }
