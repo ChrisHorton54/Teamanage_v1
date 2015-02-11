@@ -104,7 +104,6 @@ function getPhoto(source)
 {
     var cameraSource;
     var destinationType;
-    var clubID = localStorage.getItem("clubID");
     
     cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
     destinationType = navigator.camera.DestinationType;
@@ -115,6 +114,7 @@ function getPhoto(source)
 }
 
 function uploadPhotoLib(imageURI) {
+    var clubID = localStorage.getItem("clubID");
     var options = new FileUploadOptions();
     options.fileKey="file";
     options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
