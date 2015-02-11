@@ -63,11 +63,57 @@ function onFail(message) {
     alert('Failed because: ' + message);
 }
 
-  function uploadFile(mediaFile) {
+function uploadFile(mediaFile) {
+    
     var imgData = getBase64Image(mediaFile);
-      console.log("data:image/png;base64," + imgData);
-      $("#player_image-src").attr("src","data:image/png;base64," + imgData);
-  }
+    console.log("data:image/png;base64," + imgData);
+    $("#player_image-src").attr("src","data:image/png;base64," + imgData);
+    
+    path = mediaFile.fullPath;
+    name = mediaFile.name;
+
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=mediaFile.name;
+    options.mimeType="image/jpeg";
+
+    var params = new Object();
+    params.fullpath = path;
+    params.name = name;
+
+    options.params = params;
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=h003945",
+        function(result) {
+            alert("Success"); 
+        },
+        function(error) {
+            alert("Error");
+        },
+        options
+        );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 function getBase64Image(img) {
     return img.replace(/^data:image\/(png|jpg);base64,/, "");
