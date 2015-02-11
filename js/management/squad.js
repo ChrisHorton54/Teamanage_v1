@@ -56,8 +56,6 @@ function captureImage(){
 function onFail(message) {
     alert('Failed because: ' + message);
 }
-    /* var imgData = getBase64Image(mediaFile);
-    $("#player_image-src").attr("src","data:image/png;base64," + imgData); */
 
 function captureSuccess(mediaFiles) {    
     uploadFile(mediaFiles[0]);
@@ -83,10 +81,9 @@ function uploadFile(mediaFile) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=200",
+    ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
             alert("Success"); 
-            location.reload();
         },
         function(error) {
             alert("Error");
@@ -94,6 +91,7 @@ function uploadFile(mediaFile) {
         },
         options
         );
+    $("#player_image-src").attr("src","http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID + path + ".jpg");
 }
 
 
