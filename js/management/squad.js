@@ -62,7 +62,7 @@ function captureSuccess(mediaFiles) {
 }
 
 function uploadFile(mediaFile) {
-    
+    console.log(mediaFile);
     var clubID = localStorage.getItem("clubID");
     
     path = mediaFile.fullPath;
@@ -96,21 +96,6 @@ function uploadFile(mediaFile) {
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
 function getBase64Image(img) {
     return img.replace(/^data:image\/(png|jpg);base64,/, "");
 }
