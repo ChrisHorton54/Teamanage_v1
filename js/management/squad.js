@@ -66,6 +66,7 @@ function captureSuccess(mediaFiles) {
 function uploadFile(mediaFile) {
     
     var clubID = localStorage.getItem("clubID");
+    
     path = mediaFile.fullPath;
     name = mediaFile.name;
 
@@ -82,7 +83,7 @@ function uploadFile(mediaFile) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload( path, "teamanage.co.uk/scripts/management/upload_file.php?id=1",
+    ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=200",
         function(result) {
             alert("Success"); 
             location.reload();
