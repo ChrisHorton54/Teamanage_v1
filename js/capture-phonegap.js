@@ -15,6 +15,7 @@ function onFail(message) {
   function uploadFile(mediaFile) {
     var imgData = getBase64Image(mediaFile);
       console.log("data:image/png;base64," + imgData);
+      $("#player_image-src").attr("src","data:image/png;base64," + imgData);
   }
         
 function getBase64Image(img) {
