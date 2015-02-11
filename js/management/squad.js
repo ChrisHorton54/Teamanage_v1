@@ -50,39 +50,47 @@ function returnPlayerAmount(data){
 }
 
 function captureImage(){
-    navigator.camera.getPicture(uploadFile, onFail, { quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL
-    });
+    navigator.device.capture.captureImage(captureSuccess, captureError, { limit: 1 });
 }
 
 function onFail(message) {
     alert('Failed because: ' + message);
 }
-
-function uploadFile(imageURI) {
-    
     /* var imgData = getBase64Image(mediaFile);
     $("#player_image-src").attr("src","data:image/png;base64," + imgData); */
-    
-    var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="image/jpeg";
- 
-        var params = new Object();
-        params.value1 = "test";
-        params.value2 = "param";
- 
-        options.params = params;
-        options.chunkedMode = false;
- 
-        var ft = new FileTransfer();
-        ft.upload(imageURI, "http://teamanage.co.uk/files/scripts/management/upload_file.php", win, fail, options);
+
+function captureSuccess(mediaFiles) {    
+    uploadFile(mediaFiles[0]);
 }
 
+function uploadFile(mediaFile) {
+    path = mediaFile.fullPath;
+    name = mediaFile.name;
 
+    var options = new FileUploadOptions();
+    options.fileKey="file";
+    options.fileName=mediaFile.name;
+    options.mimeType="image/jpeg";
 
+    var params = new Object();
+    params.fullpath = path;
+    params.name = name;
 
+    options.params = params;
+    options.chunkedMode = false;
+
+    var ft = new FileTransfer();
+    ft.upload( path, "http://christopher-horton.co.uk/scripts/upload_file.php?id=h003945",
+        function(result) {
+            alert("Success"); 
+            location.reload();
+        },
+        function(error) {
+            alert("Error");
+        },
+        options
+        );
+}
 
 
 
