@@ -1,5 +1,28 @@
 $(document).ready(function(){
     playerAmount();
+    
+    $("#player_image-src").click(function({
+        $(".select-photo-type").css("display","block");
+        
+        setTimeout(function(){
+            $(".select-photo-type").addClass("active");
+        }, 200);
+                                 
+    });
+    
+    $(".photo-lib").click(function({
+        if($(".select-photo-type").hasClass("active")){
+            $(".select-photo-type").removeClass("active");
+        }
+        
+        setTimeout(function(){
+            $(".select-photo-type").css("display","none");
+            captureImage();
+        }, 700);
+    });
+    
+    $(".photo-camera").click(function({
+    });
 });
 
 function playerAmount(){
@@ -18,14 +41,26 @@ function returnPlayerAmount(data){
     $("#player_amount").html(data);
 }
 
-function getPhoto(source){
-    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-    destinationType: destinationType.FILE_URI,
-    sourceType: source });
+function captureImage(){
+    navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+        destinationType: Camera.DestinationType.DATA_URL
+    });
 }
 
-function onPhotoURISuccess(imageURI) 
-{
-    console.log(imageURI);
-    $("#player-image img").attr("src",imageURI);
+function onSuccess(imageData) {
+    uploadFile(imageData);
+}
+
+function onFail(message) {
+    alert('Failed because: ' + message);
+}
+
+  function uploadFile(mediaFile) {
+    var imgData = getBase64Image(mediaFile);
+      console.log("data:image/png;base64," + imgData);
+      $("#player_image-src").attr("src","data:image/png;base64," + imgData);
+  }
+        
+function getBase64Image(img) {
+    return img.replace(/^data:image\/(png|jpg);base64,/, "");
 }

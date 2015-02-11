@@ -229,3 +229,38 @@ header h2{
     text-align: center;
     color: #FFFFFF;
 }
+
+.select-photo-type{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: none;
+    z-index: 10;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+    opacity: 0;
+}
+
+.select-photo-type.active{
+    opacity: 1;
+}
+
+.select-photo-type .photo-lib, .select-photo-type .photo-camera{
+    padding: 5px 0px;
+}
+
+.select-photo-type .photo-lib{
+    background: #0152f5;
+}
+
+.select-photo-type .photo-camera{
+    background: #92b6ff;
+}
+
+.select-photo-type .photo-lib h2, .select-photo-type .photo-camera h2{
+    text-decoration: none;
+    color: #FFFFFF;
+    text-align: center;
+    cursor: pointer;
+}
