@@ -13,6 +13,10 @@ function onFail(message) {
 }
 
   function uploadFile(mediaFile) {
-      alert("Chris Test");
-      console.log(mediaFile);
+    var imgData = getBase64Image(mediaFile);
+      console.log("data:image/png;base64," + imgData);
   }
+        
+function getBase64Image(img) {
+    return img.replace(/^data:image\/(png|jpg);base64,/, "");
+}
