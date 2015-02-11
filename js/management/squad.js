@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    
+    var pictureSource = navigator.camera.PictureSourceType;
+    
     playerAmount();
     
     $("#player_image-src").click(function(){
@@ -11,6 +14,14 @@ $(document).ready(function(){
     });
     
     $(".photo-lib").click(function(){
+        if($(".select-photo-type").hasClass("active")){
+            $(".select-photo-type").removeClass("active");
+        }
+        
+        setTimeout(function(){
+            $(".select-photo-type").css("display","none");
+            getPhoto(pictureSource.PHOTOLIBRARY);
+        }, 700);
     });
     
     $(".photo-camera").click(function(){
@@ -64,3 +75,18 @@ function onFail(message) {
 function getBase64Image(img) {
     return img.replace(/^data:image\/(png|jpg);base64,/, "");
 }
+
+function getPhoto(source) 
+{
+    navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
+    destinationType: destinationType.FILE_URI,
+    sourceType: source });
+}
+
+function onPhotoURISuccess(imageURI) 
+{
+    console.log(imageURI);
+    $("#player_image-src").attr("src",imageURI);
+    largeImage.src = imageURI;
+}
+
