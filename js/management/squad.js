@@ -91,7 +91,9 @@ function uploadFile(mediaFile) {
         },
         options
         );
-    $("#player_image-src").attr("src","http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID + path + ".jpg");
+    
+    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + path + ".jpg");
+    
 }
 
 
@@ -131,5 +133,6 @@ function onPhotoURISuccess(imageURI)
     console.log(imageURI);
     $("#player_image-src").attr("src",imageURI);
     largeImage.src = imageURI;
+    uploadFile(imageURI);
 }
 
