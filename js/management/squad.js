@@ -64,6 +64,8 @@ function captureSuccess(mediaFiles) {
 }
 
 function uploadFile(mediaFile) {
+    
+    var clubID = localStorage.getItem("clubID");
     path = mediaFile.fullPath;
     name = mediaFile.name;
 
@@ -80,7 +82,7 @@ function uploadFile(mediaFile) {
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
-    ft.upload( path, "http://christopher-horton.co.uk/scripts/upload_file.php?id=h003945",
+    ft.upload( path, "teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
             alert("Success"); 
             location.reload();
