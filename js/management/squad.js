@@ -142,7 +142,9 @@ function uploadFile(mediaFile) {
         options
         );
     
-    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + name);
+    var new_name = name.replace(".jpg","");
+    
+    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + new_name);
     
 }
 
