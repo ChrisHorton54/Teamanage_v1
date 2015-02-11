@@ -76,8 +76,10 @@ function getBase64Image(img) {
 function getPhoto(source) 
 {
     var cameraSource;
+    var destinationType;
     
     cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
+    destinationType = navigator.camera.DestinationType;
     
     navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
     destinationType: destinationType.FILE_URI,
