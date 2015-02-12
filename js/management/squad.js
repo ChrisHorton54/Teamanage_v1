@@ -134,18 +134,14 @@ function uploadFile(mediaFile) {
     ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
             alert("Success"); 
+            $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + new_name);
         },
         function(error) {
             alert("Error");
             console.log(error);
         },
         options
-        );
-    
-    var new_name = name.replace(".jpg","");
-    
-    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + new_name);
-    
+        );  
 }
 
 function getBase64Image(img) {
@@ -182,7 +178,8 @@ function uploadPhotoLib(imageURI) {
     var ft = new FileTransfer();
     ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
-            alert("Success"); one.COMMENT_NODE
+            alert("Success");
+            $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName);
         },
         function(error) {
             alert("Error");
@@ -190,7 +187,6 @@ function uploadPhotoLib(imageURI) {
         },
         options
         );
-    $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName);
 }
 
 function emailChecker(email) {
