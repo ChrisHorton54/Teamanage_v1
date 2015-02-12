@@ -1,6 +1,5 @@
 $(document).ready(function(){
     playerAmount();
-    
     $("#player_image-src").click(function(){
         $(".select-photo-type").css("display","block");
         
@@ -192,4 +191,22 @@ function uploadPhotoLib(imageURI) {
 function emailChecker(email) {
   var pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return pattern.test(email);
+}
+
+function retrievePlayers(){
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/all-players.php",
+        type: "POST",
+        data: {clubID : clubID},
+        success:function(data){
+            outputPlayers(data);
+        }
+    });
+}
+
+function outputPlayers(data){
+    var information = JSON.parse(data);
+    console.log(information);
 }
