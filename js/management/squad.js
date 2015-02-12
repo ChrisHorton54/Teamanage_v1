@@ -208,5 +208,12 @@ function retrievePlayers(){
 
 function outputPlayers(data){
     var information = JSON.parse(data);
+    var playerli = "";
     console.log(information);
+    
+    for(i = 0; i < information.length; i++){
+       playerli += '<li><img style="width:100px;" src="' + information[i]['image_src'] + '" /><h2>' + information[i]['player_name'] + '</h2></li><div class="clear"></div>';
+    }
+    
+    $(".player_listing").html(playerli);
 }
