@@ -264,3 +264,42 @@ header h2{
     text-align: center;
     cursor: pointer;
 }
+
+.section .section-body .section-content .player_listing li img{
+    width:50px;
+    float: left;
+}
+
+.section .section-body .section-content .player_listing li .text-content{
+    float: left;
+    padding-left: 20px;
+    position: relative;
+    top: 7px;
+}
+
+.section .section-body .section-content .player_listing li .text-content h2{
+    float:none;
+    margin: 0;
+    left: 0px;
+    top: 0px;
+    font-size: 16px;
+}
+
+.section .section-body .section-content .player_listing li .text-content p{
+    font-size: 14px;
+}
+
+.section .section-body .section-content .player_listing li #player-arrow{
+    width: 15px;
+    top: 12px;
+    float: right;
+    position: relative;
+}
+
+.section .section-body .section-content .player_listing li .playerid-hidden{
+    display: none;
+}
+
+.section .section-body .section-content .player-link{
+    cursor: pointer;
+}

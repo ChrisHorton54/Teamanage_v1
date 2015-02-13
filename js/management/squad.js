@@ -1,5 +1,6 @@
 $(document).ready(function(){
     playerAmount();
+
     $("#player_image-src").click(function(){
         $(".select-photo-type").css("display","block");
         
@@ -181,7 +182,7 @@ function uploadPhotoLib(imageURI) {
     options.params = params;
     options.chunkedMode = false;
     var ft = new FileTransfer();
-    ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID, options
+    ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
             alert("Success");
             $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName + ".jpg");
@@ -218,8 +219,12 @@ function outputPlayers(data){
     console.log(information);
     
     for(i = 0; i < information.length; i++){
-       playerli += '<li><img style="width:100px;" src="' + information[i]['image_src'] + '" /><h2>' + information[i]['player_name'] + '</h2></li><div class="clear"></div>';
+       playerli += '<li onclick="player_selected(this.value)" value="' + information[i]['playerID'] +'"><img src="' + information[i]['image_src'] + '" /><div class="text-content"><h2>' + information[i]['player_name'] + '</h2><p>' + information[i]['position'] + '</p></div><img id="player-arrow" src="../img/arrow-list.png" /><div class="clear"></div></li></div><br/>';
     }
     
     $(".player_listing").html(playerli);
+}
+
+function player_selected(player){
+    console.log(player);
 }
