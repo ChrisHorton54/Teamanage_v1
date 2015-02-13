@@ -180,12 +180,11 @@ function uploadPhotoLib(imageURI) {
 
     options.params = params;
     options.chunkedMode = false;
-    imageURI = imageURI + ".jpg";
     var ft = new FileTransfer();
     ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
             alert("Success");
-            $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName);
+            $("#player_image-src").attr("src","http://teamanage.co.uk/app/images/" + clubID + "/" + options.fileName + ".jpg");
         },
         function(error) {
             alert("Error");
