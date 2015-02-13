@@ -180,7 +180,7 @@ function uploadPhotoLib(imageURI) {
 
     options.params = params;
     options.chunkedMode = false;
-
+    console.log(imageURI);
     var ft = new FileTransfer();
     ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_file.php?id=" + clubID,
         function(result) {
