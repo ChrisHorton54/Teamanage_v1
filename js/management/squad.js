@@ -99,7 +99,11 @@ function returnPlayerAmount(data){
 }
 
 function captureImage(){
-    navigator.device.capture.captureImage(captureSuccess, onFail, { limit: 1, quality: 50,targetWidth: 150});
+    navigator.device.capture.captureImage(captureSuccess, onFail, { 
+        limit: 1, 
+        quality: 50,
+        allowEdit: true,
+        targetWidth: 150});
 }
 
 function onFail(message) {
@@ -155,10 +159,12 @@ function getPhoto(source)
     cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
     destinationType = navigator.camera.DestinationType;
     
-    navigator.camera.getPicture(uploadPhotoLib, onFail, {     quality: 50, 
-    targetWidth: 150,
-    destinationType: destinationType.FILE_URI,
-    sourceType: cameraSource});
+    navigator.camera.getPicture(uploadPhotoLib, onFail, {
+        quality: 50, 
+        allowEdit: true,
+        targetWidth: 150,
+        destinationType: destinationType.FILE_URI,
+        sourceType: cameraSource});
 }
 
 function uploadPhotoLib(imageURI) {
