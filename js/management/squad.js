@@ -31,6 +31,8 @@ $(document).ready(function(){
             captureImage();
         }, 700);
     });
+    $("#player-description").click(function(){
+    });
     
     $(".player-submit").click(function(){
         var player_name = $("#player-name-section #player-name").val();
