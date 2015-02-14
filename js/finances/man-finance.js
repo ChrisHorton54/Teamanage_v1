@@ -51,5 +51,55 @@ function outputPlayers(data,page_type){
 }
 
 function player_selected(player){
-    console.log(player);
+    localStorage.setItem("player_selected",player);
+    window.location = 'player-info.html';
+}
+
+function financeInfo(){
+    var clubID = localStorage.getItem("clubID");
+    var playerID = localStorage.getItem("player_selected");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/finances/index.php",
+        type: "POST",
+        data: {clubID : clubID, type: "player-info", playerID: playerID},
+        success:function(data){
+            outputFinance(data);
+        }
+    }); 
+}
+
+function outputFinance(data){
+    var information = JSON.parse(data); 
+
+    $("#fin-player-name").html(information['player_name']);
+    $("#fin-player-image").attr("src",information['image_src']);
+    $("#fin-subs-owed").val(information['subs_owed']);
+    $("#fin-fines-owed").val(information['fines_owed']);
+    $("#fin-overall-subs").html("&pound;" + information['overall_subs']);
+    $("#fin-overall-fines").html("&pound;" + information['overall_fines']);
+}
+
+function saveFinances(){
+    var clubID = localStorage.getItem("clubID");
+    var playerID = localStorage.getItem("player_selected");
+    var subs = $("#fin-subs-owed").val();
+    var fines = $("#fin-fines-owed").val();
+
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/finances/index.php",
+        type: "POST",
+        data: {clubID : clubID, type: "save", playerID: playerID, newSubs: subs, newFines: fines},
+        success:function(data){
+            updateFinances(data);
+        }
+    }); 
+}
+
+function updateFinances(data){
+    var information = JSON.parse(data);
+    if(information['finances_updated'] == "true"){
+        alert("This players Fiannces have succesfully been updated");
+        window.location = "finances.html";
+    }
 }
