@@ -19,7 +19,7 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-            retrieveHomeInfo();
+            retrievePlayers("subs");
         }
     </script>
   </head>
@@ -70,43 +70,11 @@
       </header>
       
       <div class="section">
-          <h2>Finances</h2>
+          <h2>Players Subs</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-              <p>Total Club Intakes</p>
-                <ul>
-                    <li><p id="player_amount" class="total-intakes"></p><div class="clear"></div></li>
-                </ul>
-            </div>
-        </div>
-      </div>
-      
-      <div class="clear"></div>
-      
-      <div class="section">
-          <h2>Subs</h2>
-          <div class="clear"></div>
-        <div class="section-body">
-            <div class="section-content">
-              <p>Outstanding Subs</p>
-                <ul>
-                    <a href="overall-subs.html"><li><p id="player_amount" class="outstanding-subs"></p><img src="../../img/arrow-list.png" /><div class="clear"></div></li></a>
-                </ul>
-            </div>
-        </div>
-      </div>
-      
-      <div class="clear"></div>
-      
-      <div class="section">
-          <h2>Fines</h2>
-          <div class="clear"></div>
-        <div class="section-body">
-            <div class="section-content">
-              <p>Outstanding Fines</p>
-                <ul>
-                    <a href="overall-fines.html"><li><p id="player_amount" class="outstanding-fines"></p><img src="../../img/arrow-list.png" /><div class="clear"></div></li></a>
+                <ul class="player_listing">
                 </ul>
             </div>
         </div>

@@ -94,7 +94,6 @@ function playerAmount(){
             returnPlayerAmount(data);
         }
     }); 
-    
 }
 
 function returnPlayerAmount(data){
