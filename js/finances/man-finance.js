@@ -99,7 +99,7 @@ function saveFinances(){
 function updateFinances(data){
     var information = JSON.parse(data);
     if(information['finances_updated'] == "true"){
-        alert("This players Fiannces have succesfully been updated");
+        alert("This players Finances have succesfully been updated");
         window.location = "finances.html";
     }
 }

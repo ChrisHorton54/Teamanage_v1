@@ -267,6 +267,43 @@ header h2{
     cursor: pointer;
 }
 
+.section .section-body .section-content #fin-player-image{
+    float: left;
+}
+
+.section .section-body .section-content #finance-info{
+    float: left;
+    margin-left: 20px;
+}
+
+.section .section-body .section-content #finance-info p{
+    margin-bottom: 10px;
+}
+
+.section .section-body .section-content #finance-info span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2a415c;
+    font-size: 20px;
+}
+
+.section .section-body .section-content #finance-info input{
+    width: 65px;
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2a415c;
+    border: none;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+.section .section-body .section-content #fin-overall-subs, .section .section-body .section-content #fin-overall-fines{
+    width: 90%;
+    display: block;
+    text-align: center;
+}
+
 .section .section-body .section-content .player_listing li img{
     width:50px;
     float: left;
