@@ -151,6 +151,20 @@ $(document).ready(function(){
         });
     });
     
+    $(".player-submit").click(function(){
+        var email_address = $(".player-form #email_address").val();
+        var password = $(".player-form #password").val(); 
+        
+        $.ajax({
+            url:"http://teamanage.co.uk/scripts/login.php",
+            type: "POST",
+            data: { email_address: email_address, password: password, type: "player" },
+            success:function(data){
+                loginPlayer(data);
+            }
+        });
+    });
+    
     $(".fan-signing").click(function(){
         var email_address = $(".fan-sign-up-form #email_address").val();
         var password = $(".fan-sign-up-form #password").val();
@@ -219,6 +233,36 @@ function loginManager(data){
         }
         
         window.location = "management/index.html";
+    }
+}
+
+function loginPlayer(data){
+    var information = JSON.parse(data);
+    
+    if(information['error_email'] == "true"){
+        alert("Please use a registered Email Address.");
+    } else if(information['password_error'] == "true"){
+        alert("Please make sure your password is correct.");
+    } else {
+        var checked = $(".player-form #remember_me").prop('checked');
+        
+        if(checked == true){
+            localStorage.setItem("email_address", information['email_address']);
+            localStorage.setItem("password", information['password']);
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "player");
+            localStorage.setItem("player_name", information['player_name']);
+            localStorage.setItem("playerID", information['playerID']);
+        } else {
+            localStorage.clear();
+            
+            localStorage.setItem("clubID", information['clubID']);
+            localStorage.setItem("account_type", "fan");
+            localStorage.setItem("player_name", information['player_name']);
+            localStorage.setItem("playerID", information['playerID']);
+        }
+        
+        window.location = "player/index.html";
     }
 }
 

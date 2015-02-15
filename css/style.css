@@ -342,3 +342,13 @@ header h2{
 .section .section-body .section-content .player-link{
     cursor: pointer;
 }
+
+.section .section-body .section-content .subs-fines .submit{
+    float: right;
+    width: 35%;
+    height: 40px;
+}
+
+.section .section-body .section-content .subs-fines .submit p{
+    top: 10px;
+}

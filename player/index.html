@@ -15,7 +15,7 @@
         }
         
         window.onload = function(){
-            $('#fan_name').html(localStorage.getItem('fan_name'));
+            $('#name').html(localStorage.getItem('player_name'));
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
@@ -23,9 +23,10 @@
     </script>
   </head>
   <body>
+      <img src="../img/background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../img/menu.png" alt="Menu" title="Menu" />
-        <h2 id="fan_name"></h2>
+        <h2 id="name">Player</h2>
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -37,7 +38,7 @@
                         <img src="../img/events-nav.jpg" title="Events" alt="Events" />
                         <h3>Events</h3>
                     </div></a> 
-                <a href=""><div class="nav-block third">
+                <a href="finances/finance.html"><div class="nav-block third">
                         <img src="../img/finances-nav.jpg" title="Finances" alt="Finances" />
                         <h3>Finances</h3>
                     </div></a>
