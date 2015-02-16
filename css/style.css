@@ -480,7 +480,7 @@ header h2{
     transition: opacity 0.5s ease-in-out;
 }
 
-.payment-active{
+.payment-active, .ajax-loader.payment-active{
     opacity: 1;
 }
 
@@ -492,4 +492,24 @@ header h2{
     border-radius: 20px;
     padding: 5px;
     width: 12px;
+}
+
+.ajax-loader{
+    min-width: 100%;
+    position: absolute;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.52);
+    border-radius: 10px;
+    display: none;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 32;
+}
+
+.ajax-loader img{
+    position: absolute;
+    top: 47%;
+    left: 42%;
 }

@@ -3,11 +3,15 @@
 
     var stripeResponseHandler = function(status, response) {
       var $form = $('#payment-form');
-
+        
       if (response.error) {
+        $(".ajax-loader").removeClass("payment-active");
+        
+        setTimeout(function(){
+            $(".ajax-loader").css("display","none");
+        }, 500);
         // Show the errors on the form
-        $form.find('.payment-errors').text(response.error.message);
-        $form.find('button').prop('disabled', false);
+        alert(response.error.message);
       } else {
         // token contains id, last4, and card type
         var input = response.id;
@@ -27,9 +31,14 @@
     };
 
     jQuery(function($) {
-      $('#payment-form').submit(function(e) {
+      $('#payment-form-fines').submit(function(e) {
         var $form = $(this);
-
+        $(".ajax-loader").css("display","block");
+        
+        setTimeout(function(){
+            $(".ajax-loader").addClass("payment-active");
+        }, 200);
+          
         // Disable the submit button to prevent repeated clicks
         $form.find('button').prop('disabled', true);
 
@@ -45,8 +54,13 @@
 
       if (response.error) {
         // Show the errors on the form
-        $form.find('.payment-errors').text(response.error.message);
-        $form.find('button').prop('disabled', false);
+        $(".ajax-loader").removeClass("payment-active");
+        
+        setTimeout(function(){
+            $(".ajax-loader").css("display","none");
+        }, 500);
+          
+         alert(response.error.message);
       } else {
         // token contains id, last4, and card type
         var input = response.id;
@@ -66,9 +80,14 @@
     };
 
     jQuery(function($) {
-      $('#payment-form-subs').submit(function(e) {
+      $('#payment-form-subs').submit(function(e) {  
         var $form = $(this);
-
+        $(".ajax-loader").css("display","block");
+        
+        setTimeout(function(){
+            $(".ajax-loader").addClass("payment-active");
+        }, 200);
+          
         // Disable the submit button to prevent repeated clicks
         $form.find('button').prop('disabled', true);
 
