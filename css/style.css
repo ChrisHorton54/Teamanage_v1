@@ -300,9 +300,7 @@ header h2{
 }
 
 .section .section-body .section-content #fin-overall-subs, .section .section-body .section-content #fin-overall-fines{
-    width: 90%;
     display: block;
-    text-align: center;
 }
 
 .section .section-body .section-content .player_listing li img{
@@ -344,7 +342,7 @@ header h2{
     cursor: pointer;
 }
 
-.section .section-body .section-content .subs-fines .submit{
+.section .section-body .section-content .subs-fines .submit, .section .section-body .section-content .cash-subs, .section .section-body .section-content .cash-fines{
     float: right;
     width: 35%;
     height: 40px;

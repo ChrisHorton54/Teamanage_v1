@@ -103,3 +103,25 @@ function updateFinances(data){
         window.location = "finances.html";
     }
 }
+
+function paidCash(type){
+    var clubID = localStorage.getItem("clubID");
+    var playerID = localStorage.getItem("player_selected");
+    var message = "Payment from email:";
+    var payment = "";
+    
+    if(type == "subs"){
+        payment = $("#fin-subs-owed").val();
+    } else if(type == "fines"){
+         payment = $("#fin-fines-owed").val();
+    }
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/finances/index.php",
+        type: "POST",
+        data: {playerID : playerID, type: "cash", payment_for: type, message: message, payment: payment},
+        success:function(data){
+            updateFinances(data);
+        }
+    }); 
+}

@@ -1,14 +1,54 @@
     // This identifies your website in the createToken call below
     Stripe.setPublishableKey('pk_test_wDUZqZtwcNTFzgK0WYGV86wg');
 
-    var stripeResponseHandler = function(status, response) {
+    jQuery(function($) {
+        
+      $('#payment-form-fines').submit(function(e) {
+        var $form = $(this);
+        $(".fines .ajax-loader").css("display","block");
+        setTimeout(function(){
+            $(".fines .ajax-loader").addClass("payment-active");
+        }, 200);
+          
+        // Disable the submit button to prevent repeated clicks
+        //$form.find('button').prop('disabled', true);
+
+        Stripe.card.createToken($form, stripeResponseHandlerFines);
+
+        // Prevent the form from submitting with the default action
+        return false;
+      });
+        
+    $('#payment-form-subs').submit(function(e) {  
+        var $form = $(this);
+        
+        $(".subs .ajax-loader").css("display","block");
+
+        setTimeout(function(){
+            $(".subs .ajax-loader").addClass("payment-active");
+        }, 200);
+
+        // Disable the submit button to prevent repeated clicks
+        //$form.find('button').prop('disabled', true);
+
+        Stripe.card.createToken($form, stripeResponseHandlerSubs);
+
+        // Prevent the form from submitting with the default action
+        return false;
+    });  
+        
+        
+        
+    });
+
+    function stripeResponseHandlerFines(status, response) {
       var $form = $('#payment-form');
         
       if (response.error) {
-        $(".ajax-loader").removeClass("payment-active");
+        $(".fines .ajax-loader").removeClass("payment-active");
         
         setTimeout(function(){
-            $(".ajax-loader").css("display","none");
+            $(".fines .ajax-loader").css("display","none");
         }, 500);
         // Show the errors on the form
         alert(response.error.message);
@@ -16,48 +56,31 @@
         // token contains id, last4, and card type
         var input = response.id;
         var payment = $("#fines-payment-amount").html();
-        var email = "Payment from email: chris@teamanage.co.uk for Fines";
+        var email = "Payment from email: " + $("#fin-player-email").html(); + " for Fines";
         var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
+        var playerID = localStorage.getItem('playerID');
+        var payment_dec = $(".fines-amount").html();
 
         $.ajax({
             url:"http://teamanage.co.uk/stripe/charge.php",
             type: "POST",
-            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk},
+            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "fines"},
             success:function(data){
                 checkPayment(data);
             }
         });
       }
-    };
+    }
 
-    jQuery(function($) {
-      $('#payment-form-fines').submit(function(e) {
-        var $form = $(this);
-        $(".ajax-loader").css("display","block");
-        
-        setTimeout(function(){
-            $(".ajax-loader").addClass("payment-active");
-        }, 200);
-          
-        // Disable the submit button to prevent repeated clicks
-        $form.find('button').prop('disabled', true);
-
-        Stripe.card.createToken($form, stripeResponseHandler);
-
-        // Prevent the form from submitting with the default action
-        return false;
-      });
-    });
-
-    var stripeResponseHandler2 = function(status, response) {
-      var $form = $('#payment-form-fines');
+    function stripeResponseHandlerSubs(status, response) {
+      var $form = $('#payment-form-subs');
 
       if (response.error) {
         // Show the errors on the form
-        $(".ajax-loader").removeClass("payment-active");
+        $(".subs .ajax-loader").removeClass("payment-active");
         
         setTimeout(function(){
-            $(".ajax-loader").css("display","none");
+            $(".subs .ajax-loader").css("display","none");
         }, 500);
           
          alert(response.error.message);
@@ -65,42 +88,26 @@
         // token contains id, last4, and card type
         var input = response.id;
         var payment = $("#subs-payment-amount").html();
-        var email = "Payment from email: chris@teamanage.co.uk for Subs";
+        var email = "Payment from email: " + $("#fin-player-email").html(); + " for Subs";
         var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
-
+        var playerID = localStorage.getItem('playerID');
+        var payment_dec = $(".subs-amount").html();
+          
         $.ajax({
             url:"http://teamanage.co.uk/stripe/charge.php",
             type: "POST",
-            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk},
+            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "subs"},
             success:function(data){
                 checkPayment(data);
             }
         });
       }
-    };
+    }
 
-    jQuery(function($) {
-      $('#payment-form-subs').submit(function(e) {  
-        var $form = $(this);
-        $(".ajax-loader").css("display","block");
-        
-        setTimeout(function(){
-            $(".ajax-loader").addClass("payment-active");
-        }, 200);
-          
-        // Disable the submit button to prevent repeated clicks
-        $form.find('button').prop('disabled', true);
-
-        Stripe.card.createToken($form, stripeResponseHandler2);
-
-        // Prevent the form from submitting with the default action
-        return false;
-      });
-    });
 
 function checkPayment(data){
     var info = JSON.parse(data);
-    
+
     if(info['payment'] == "Success"){
         alert("Your Payment Was Successful");
         window.location = "finance.html";
@@ -127,8 +134,9 @@ function populateIndex(data){
     var fines = info['fines'].replace(".", "");
     
     $("#fin-player-image").attr("src",info['image_src']);
+    $("#fin-player-email").html(info['email_address']);
     $("#finance-info h3").html(info['player_name']);
-    $("#finance-info p").html(info['position']);
+    $("#finance-info #position").html(info['position']);
     $(".subs-amount").html(info['subs']);
     $("#subs-payment-amount").html(subs);
     $(".fines-amount").html(info['fines']);
