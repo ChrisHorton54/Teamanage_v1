@@ -272,23 +272,29 @@ header h2{
     width: 40%;
 }
 
-.section .section-body .section-content #finance-info{
+.section .section-body .section-content .finance-info{
     float: left;
-    margin-left: 20px;
+    width: 100%;
 }
 
-.section .section-body .section-content #finance-info p{
-    margin-bottom: 10px;
+.section .section-body .section-content .finance-info .figure{
+    float: left;
 }
 
-.section .section-body .section-content #finance-info span{
+.section .section-body .section-content #overall_payments{
+    float: left;
+    width: 60%;
+    text-align: center;
+}
+
+.section .section-body .section-content .finance-info span{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: #2a415c;
     font-size: 20px;
 }
 
-.section .section-body .section-content #finance-info input{
+.section .section-body .section-content .finance-info input{
     width: 65px;
     padding: 5px;
     font-family: 'Roboto', sans-serif;
@@ -344,7 +350,7 @@ header h2{
 
 .section .section-body .section-content .subs-fines .submit, .section .section-body .section-content .cash-subs, .section .section-body .section-content .cash-fines{
     float: right;
-    width: 35%;
+    width: 45%;
     height: 40px;
 }
 
@@ -355,7 +361,7 @@ header h2{
 .overall-payment-form{
     background: #f5f5f7;
     z-index: 31;
-    width: 90%;
+    width: 85%;
     margin: 0 auto;
     position: fixed;
     top: 2%;

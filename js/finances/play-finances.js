@@ -135,12 +135,22 @@ function populateIndex(data){
     
     $("#fin-player-image").attr("src",info['image_src']);
     $("#fin-player-email").html(info['email_address']);
-    $("#finance-info h3").html(info['player_name']);
-    $("#finance-info #position").html(info['position']);
+    $("#overall_payments h3").html(info['player_name']);
+    $("#overall_payments #position").html(info['position']);
     $(".subs-amount").html(info['subs']);
     $("#subs-payment-amount").html(subs);
     $(".fines-amount").html(info['fines']);
     $("#fines-payment-amount").html(fines);
+    
+    if(info['subs'] == "0.00"){
+        $("#payment-subs p").attr("onclick","");
+        $("#payment-subs p").html("No subs to pay");
+    }
+    
+    if(info['fines'] == "0.00"){
+        $("#payment-fines").attr("onclick","");
+        $("#payment-fines p").html("No fines to pay");
+    }
 }
 
 function paymentShow(type){

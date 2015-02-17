@@ -65,8 +65,8 @@
                         <img src="../../img/fantalk-nav.jpg" title="Fan Talk" alt="Fan Talk" />
                         <h3>Fan Talk</h3>
                     </div></a>
-                <div class="nav-block second log-out">
-                        <img src="../../img/fantalk-nav.jpg" title="Log Out" alt="Log Out" />
+                <div class="nav-block second" onclick="logout('../')">
+                        <img src="../../img/log-out.jpg" title="Log Out" alt="Log Out" />
                         <h3>Log Out</h3>
                     </div>
             </div>
@@ -78,7 +78,7 @@
         <div class="section-body">
             <div class="section-content">
                 <img id="fin-player-image" src="../../img/gallery-nav.jpg" />
-                <div id="finance-info">
+                <div id="overall_payments">
                     <h3>Player Name</h3>
                     <p id="position">Position</p>
                     <p id="fin-player-email" style="display:none;"></p>
@@ -95,7 +95,7 @@
             <div class="section-content">
                 <div class="subs-fines">
                     <h2>&pound;<span class="subs-amount"></span></h2>
-                    <a href="#" class="submit" onclick="paymentShow('subs');"><p>Pay Subs</p></a>
+                    <a href="#" class="submit" id="payment-subs" onclick="paymentShow('subs');"><p>Pay Subs</p></a>
                     <p id="subs-payment-amount" style="display:none;"></p>
                     <div class="overall-payment-form subs">
                         <div class="ajax-loader"><img src="../../img/ajax-loader.gif" /></div>
@@ -115,8 +115,7 @@
                           </div>
 <br/>
                           <div class="form-row">
-                            <label><input type="text" size="2" maxlength="2" data-stripe="exp-month" placeholder="MM" id="month"/><span> / </span><input type="text" size="4" maxlength="4" data-stripe="exp-year" placeholder="YYYY" id="year"/>
-            </label>
+                            <input type="text" size="2" maxlength="2" data-stripe="exp-month" placeholder="MM" id="month"/><span> / </span><input type="text" size="4" maxlength="4" data-stripe="exp-year" placeholder="YYYY" id="year"/>
                           </div>
                             <br/>
                           <button type="submit">Submit Payment</button>
@@ -136,7 +135,7 @@
             <div class="section-content">
                 <div class="subs-fines">
                     <h2>&pound;<span class="fines-amount"></span></h2>
-                    <a href="#" class="submit" onclick="paymentShow('fines');"><p>Pay Fines</p></a>
+                    <a href="#" class="submit" id="payment-fines" onclick="paymentShow('fines');"><p>Pay Fines</p></a>
                     <p id="fines-payment-amount" style="display:none;"></p>
                     <div class="overall-payment-form fines">
                         <div class="ajax-loader"><img src="../../img/ajax-loader.gif" /></div>
@@ -156,8 +155,7 @@
                           </div>
 <br/>
                           <div class="form-row">
-                            <label><input type="text" size="2" maxlength="2" data-stripe="exp-month" placeholder="MM" id="month"/><span> / </span><input type="text" size="4" maxlength="4" data-stripe="exp-year" placeholder="YYYY" id="year"/>
-            </label>
+                            <input type="text" size="2" maxlength="2" data-stripe="exp-month" placeholder="MM" id="month"/><span> / </span><input type="text" size="4" maxlength="4" data-stripe="exp-year" placeholder="YYYY" id="year"/>
                           </div>
                           <br/>
                           <button type="submit">Submit Payment</button>

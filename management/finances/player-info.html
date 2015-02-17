@@ -74,10 +74,12 @@
         <div class="section-body">
             <div class="section-content">
                 <img id="fin-player-image" src="../../img/gallery-nav.jpg" />
-                <div id="finance-info">
-                    <p>Subs Owed</p><span>&pound;</span><input type="text" id="fin-subs-owed" />
+                <div id="overall_payments">
+                    <p>Overall Subs Paid</p>
+                    <h2 id="fin-overall-subs"></h2>
                     <br/><br/>
-                    <p>Fines Owed</p><span>&pound;</span><input type="text" id="fin-fines-owed" />
+                    <p>Overall Fines Paid</p>
+                    <h2 id="fin-overall-fines"></h2>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -87,12 +89,14 @@
       <div class="clear"></div>
       
       <div class="section">
-          <h2>Overall Subs Paid</h2>
+          <h2>Subs Owed</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <h2 id="fin-overall-subs"></h2>
-                <a href="#" class="submit cash-subs" onclick="paidCash('subs');"><p>Paid Cash</p></a>
+                <div class="finance-info">
+                    <p class="figure"><span>&pound;</span><input type="text" id="fin-subs-owed" /></p>
+                    <a href="#" class="submit cash-fines" onclick="paidCash('subs');"><p>Paid Subs</p></a>
+                </div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -101,12 +105,14 @@
       <div class="clear"></div>
       
       <div class="section">
-          <h2>Overall Fines Paid</h2>
+          <h2>Fines Owed</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <h2 id="fin-overall-fines"></h2>
-                <a href="#" class="submit cash-fines" onclick="paidCash('fines');"><p>Paid Cash</p></a>
+                <div class="finance-info">
+                    <p class="figure"><span>&pound;</span><input type="text" id="fin-fines-owed" /></p>
+                    <a href="#" class="submit cash-fines" onclick="paidCash('fines');"><p>Paid Fines</p></a>
+                </div>
                 <div class="clear"></div>
                 <br/>
                 <a href="#" class="submit finances-submit" onclick="saveFinances();"><p>Save Finances</p></a>
