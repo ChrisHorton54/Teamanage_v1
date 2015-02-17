@@ -220,7 +220,7 @@ function outputPlayers(data){
     console.log(information);
     
     for(i = 0; i < information.length; i++){
-       playerli += '<li onclick="player_selected(this.value)" value="' + information[i]['playerID'] +'"><img src="' + information[i]['image_src'] + '" /><div class="text-content"><h2>' + information[i]['player_name'] + '</h2><p>' + information[i]['position'] + '</p></div><img id="player-arrow" src="../img/arrow-list.png" /><div class="clear"></div></li></div><br/>';
+       playerli += '<li onclick="player_selected(this.value)" value="' + information[i]['playerID'] +'"><img src="' + information[i]['image_src'] + '" /><div class="text-content"><h2>' + information[i]['player_name'] + '</h2><p>' + information[i]['position'] + '</p></div><img id="player-arrow" src="../../img/arrow-list.png" /><div class="clear"></div></li></div><br/>';
     }
     
     $(".player_listing").html(playerli);
