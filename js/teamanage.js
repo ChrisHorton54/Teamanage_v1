@@ -1,6 +1,4 @@
-$(document).ready(function(){
-    $(".log-out").click(function(){
-        localStorage.clear();
-        window.location = "../index.html";
-    });
-});
+function logout(dir){
+    localStorage.clear();
+        window.location = dir + "../index.html";
+}
