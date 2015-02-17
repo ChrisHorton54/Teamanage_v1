@@ -143,7 +143,7 @@ function populateIndex(data){
     $("#fines-payment-amount").html(fines);
     
     if(info['subs'] == "0.00"){
-        $("#payment-subs p").attr("onclick","");
+        $("#payment-subs").attr("onclick","");
         $("#payment-subs p").html("No subs to pay");
     }
     

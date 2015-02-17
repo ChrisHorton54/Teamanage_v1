@@ -518,3 +518,24 @@ header h2{
     top: 47%;
     left: 42%;
 }
+
+.recent-payment-list li{
+    margin-bottom: 15px;
+}
+
+.recent-payment-list span{
+    float: left;
+    width: 60%;
+}
+
+.recent-payment-list span h3{
+    margin: 0 0 10px 0px;
+}
+
+.recent-payment-list h2{
+    float: right;
+    font-size: 30px;
+    left: 0;
+    width: 40%;
+    text-align: right;
+}
