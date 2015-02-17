@@ -80,7 +80,7 @@ function addNewPlayer(data){
         alert("The Email Address provided is already in use.");
     } else {
         alert("Player has been added to your club!");
-        window.location = "../management/all-players.html";
+        window.location = "../squads/all-players.html";
     }
 }
 
