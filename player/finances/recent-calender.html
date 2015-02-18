@@ -21,12 +21,26 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            var d = new Date();
+            var today_month = d.getMonth() + 1;
+            populateCalender(d.getFullYear() + '-' + today_month + '-' + d.getDate());
+            
             $('#mydate').glDatePicker(
             {
                 showAlways: true,
                 cssName: 'flatwhite',
                 prevArrow: '<',
-                nextArrow: '>'
+                nextArrow: '>',
+                onClick: function(target, cell, date, data) {
+                    var month = ['January','Febuary','March','April','May','June','July','August','September','October','November','December']; 
+                    var month_text = month[date.getMonth()];
+                    var date_txt = date.getDate() + " " + month_text + " " + date.getFullYear();
+                    var month_num = date.getMonth() + 1;
+                    var date_num = date.getFullYear() + '-' + month_num + '-' + date.getDate();
+                    target.val(date_txt);
+                    populateCalender(date_num);
+                }
             });
         }
     </script>
@@ -36,6 +50,7 @@
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="name">Player</h2>
+        <a href="recent-lists.html"><img class="add-player" src="../../img/list_white.png" alt="Lists" title="Lists" /></a>
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -81,12 +96,19 @@
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <input type="text" id="mydate" gldp-id="mydate" />
+                <input type="text" id="mydate" gldp-id="mydate" placeholder="Date"/>
+                <div class="width-50 calender-payments">
+                    <p>Subs Payment</p>
+                    <h3>&pound;<span id="payment_for_subs">0.00</span></h3>
+                </div>
+                <div class="width-50 calender-payments">
+                    <p>Fines Payment</p>
+                    <h3>&pound;<span id="payment_for_fines">0.00</span></h3>
+                </div>
+                <div class="clear"></div>
                 <div gldp-el="mydate"
                      style="width:91%; height:300px;">
                 </div>
-                <div class="clear"></div>
-                <h2>Fines</h2>
             </div>
         </div>
       </div>

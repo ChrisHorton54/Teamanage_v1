@@ -22,6 +22,7 @@
 	cursor: pointer;
 	color: #222;
 	background: #ffffff;
+    z-index: 10 !important;
 }
 
 /* Cell border */

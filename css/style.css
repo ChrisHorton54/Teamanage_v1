@@ -539,3 +539,26 @@ header h2{
     width: 40%;
     text-align: right;
 }
+
+.width-50{
+    float:left;
+    width: 50%;
+}
+
+.calender-payments p{
+    margin: 10px 0px;
+}
+
+.calender-payments h3{
+    margin: 10px 0px;
+}
+
+input#mydate{
+    background: none;
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-family: 'RobotoLight';
+}

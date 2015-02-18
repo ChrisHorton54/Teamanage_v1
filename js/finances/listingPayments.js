@@ -27,3 +27,22 @@ function produceList(data){
     
     $('.recent-payment-list').html(list);
 }
+
+function populateCalender(date){
+    var playerID = localStorage.getItem('playerID');
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/player/finances.php",
+        type: "POST",
+        data: {type: "recent-calender", playerID: playerID, date: date},
+        success:function(data){
+            produceCalender(data);
+        }
+    });
+}
+
+function produceCalender(data){
+    var info = JSON.parse(data);
+    $('#payment_for_subs').html(info['subs']);
+    $('#payment_for_fines').html(info['fines']);
+}
