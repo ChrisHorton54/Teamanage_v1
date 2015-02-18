@@ -1,15 +1,26 @@
-    // This identifies your website in the createToken call below
-    Stripe.setPublishableKey('pk_test_wDUZqZtwcNTFzgK0WYGV86wg');
+jQuery(function($) {
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/player/finances.php",
+        type: "POST",
+        data: {clubID: clubID, type: "stripe_keys"},
+        success:function(data){
+            stripeKeys(data);
+        }
+    });
 
-    jQuery(function($) {
-        
-      $('#payment-form-fines').submit(function(e) {
+
+    // This identifies your website in the createToken call below
+    Stripe.setPublishableKey(localStorage.getItem("publish_key"));
+
+    $('#payment-form-fines').submit(function(e) {
         var $form = $(this);
         $(".fines .ajax-loader").css("display","block");
         setTimeout(function(){
             $(".fines .ajax-loader").addClass("payment-active");
         }, 200);
-          
+
         // Disable the submit button to prevent repeated clicks
         //$form.find('button').prop('disabled', true);
 
@@ -17,11 +28,11 @@
 
         // Prevent the form from submitting with the default action
         return false;
-      });
-        
+    });
+
     $('#payment-form-subs').submit(function(e) {  
         var $form = $(this);
-        
+
         $(".subs .ajax-loader").css("display","block");
 
         setTimeout(function(){
@@ -36,73 +47,77 @@
         // Prevent the form from submitting with the default action
         return false;
     });  
-        
-        
-        
+});
+
+function stripeKeys(data){
+    var info = JSON.parse(data);
+    
+    localStorage.setItem("secret_key",info['secret_key'])
+    localStorage.setItem("publish_key",info['publish_key']);
+}
+
+function stripeResponseHandlerFines(status, response) {
+  var $form = $('#payment-form');
+
+  if (response.error) {
+    $(".fines .ajax-loader").removeClass("payment-active");
+
+    setTimeout(function(){
+        $(".fines .ajax-loader").css("display","none");
+    }, 500);
+    // Show the errors on the form
+    alert(response.error.message);
+  } else {
+    // token contains id, last4, and card type
+    var input = response.id;
+    var payment = $("#fines-payment-amount").html();
+    var email = "Payment from email: " + $("#fin-player-email").html(); + " for Fines";
+    var stripe_sk = localStorage.getItem("secret_key");
+    var playerID = localStorage.getItem('playerID');
+    var payment_dec = $(".fines-amount").html();
+
+    $.ajax({
+        url:"http://teamanage.co.uk/stripe/charge.php",
+        type: "POST",
+        data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "fines"},
+        success:function(data){
+            checkPayment(data);
+        }
     });
+  }
+}
 
-    function stripeResponseHandlerFines(status, response) {
-      var $form = $('#payment-form');
-        
-      if (response.error) {
-        $(".fines .ajax-loader").removeClass("payment-active");
-        
-        setTimeout(function(){
-            $(".fines .ajax-loader").css("display","none");
-        }, 500);
-        // Show the errors on the form
-        alert(response.error.message);
-      } else {
-        // token contains id, last4, and card type
-        var input = response.id;
-        var payment = $("#fines-payment-amount").html();
-        var email = "Payment from email: " + $("#fin-player-email").html(); + " for Fines";
-        var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
-        var playerID = localStorage.getItem('playerID');
-        var payment_dec = $(".fines-amount").html();
+function stripeResponseHandlerSubs(status, response) {
+  var $form = $('#payment-form-subs');
 
-        $.ajax({
-            url:"http://teamanage.co.uk/stripe/charge.php",
-            type: "POST",
-            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "fines"},
-            success:function(data){
-                checkPayment(data);
-            }
-        });
-      }
-    }
+  if (response.error) {
+    // Show the errors on the form
+    $(".subs .ajax-loader").removeClass("payment-active");
 
-    function stripeResponseHandlerSubs(status, response) {
-      var $form = $('#payment-form-subs');
+    setTimeout(function(){
+        $(".subs .ajax-loader").css("display","none");
+    }, 500);
 
-      if (response.error) {
-        // Show the errors on the form
-        $(".subs .ajax-loader").removeClass("payment-active");
-        
-        setTimeout(function(){
-            $(".subs .ajax-loader").css("display","none");
-        }, 500);
-          
-         alert(response.error.message);
-      } else {
-        // token contains id, last4, and card type
-        var input = response.id;
-        var payment = $("#subs-payment-amount").html();
-        var email = "Payment from email: " + $("#fin-player-email").html(); + " for Subs";
-        var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
-        var playerID = localStorage.getItem('playerID');
-        var payment_dec = $(".subs-amount").html();
-          
-        $.ajax({
-            url:"http://teamanage.co.uk/stripe/charge.php",
-            type: "POST",
-            data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "subs"},
-            success:function(data){
-                checkPayment(data);
-            }
-        });
-      }
-    }
+     alert(response.error.message);
+  } else {
+    // token contains id, last4, and card type
+    var input = response.id;
+    var payment = $("#subs-payment-amount").html();
+    var email = "Payment from email: " + $("#fin-player-email").html(); + " for Subs";
+    var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
+    var playerID = localStorage.getItem('playerID');
+    var payment_dec = $(".subs-amount").html();
+
+    $.ajax({
+        url:"http://teamanage.co.uk/stripe/charge.php",
+        type: "POST",
+        data: {stripeToken : input, payment: payment, email: email, stripe_sk: stripe_sk, playerID : playerID, payment_dec: payment_dec, type: "subs"},
+        success:function(data){
+            checkPayment(data);
+        }
+    });
+  }
+}
 
 
 function checkPayment(data){

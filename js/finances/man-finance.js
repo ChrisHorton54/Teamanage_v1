@@ -125,3 +125,62 @@ function paidCash(type){
         }
     }); 
 }
+
+function retrieveStripeSettings(){
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/finances/index.php",
+        type: "POST",
+        data: {clubID : clubID, type: "settings"},
+        success:function(data){
+            populateSettings(data);
+        }
+    }); 
+}
+
+function populateSettings(data){
+    var info = JSON.parse(data);
+    if(info['secret_key'] != ""){
+        $('#stripe_secret').val(info['secret_key']);
+    }
+    if(info['publish_key'] != ""){
+        $('#stripe_publish').val(info['publish_key']);
+    }
+}
+
+function saveStripeSettings(){
+    var clubID = localStorage.getItem("clubID");
+    var secret_key = $('#stripe_secret').val();
+    var publish_key = $('#stripe_publish').val();
+    var errors = "";
+    
+    if(secret_key.indexOf("sk_") == "-1"){
+        errors = errors + "- Secret Key\n";
+    }
+    
+    if(publish_key.indexOf("pk_") == "-1"){
+        errors = errors + ("- Publish Key\n");
+    }
+    
+    if(errors.length > 0){
+        alert("The following keys are not valid: \n\n" + errors);
+    } else {
+        $.ajax({
+            url:"http://teamanage.co.uk/scripts/management/finances/index.php",
+            type: "POST",
+            data: {clubID : clubID, type: "settings-save", secret_key: secret_key, publish_key: publish_key},
+            success:function(data){
+                updateSettings(data);
+            }
+        }); 
+    }
+}
+
+function updateSettings(data){
+    var info = JSON.parse(data);
+    if(info['finances_updated'] == "Success"){
+        alert("Your Stripe details have been updated.");
+        window.location = "finances.html";
+    }
+}

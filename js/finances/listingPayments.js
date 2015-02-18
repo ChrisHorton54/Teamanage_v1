@@ -13,7 +13,6 @@ function getList(){
 
 function produceList(data){
     var info = JSON.parse(data);
-    console.log(info);
     var list = "";
     
     for(i = 0; i < info.length; i++){

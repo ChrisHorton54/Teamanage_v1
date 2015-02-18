@@ -19,6 +19,10 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            $("#open-setting").click(function(){
+                $(".finance-settings").fadeToggle("slow");
+                retrieveStripeSettings();
+            });
             retrieveHomeInfo();
         }
     </script>
@@ -28,6 +32,7 @@
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="club_name"></h2>
+        <img class="add-player" id="open-setting" src="../../img/settings.png" alt="Settings" title="Settings" />
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -67,6 +72,18 @@
                     </div>
             </div>
         </div>
+          <div class="finance-settings">
+            <img src="../../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
+            <a href="#" class="submit save_stripe" onclick="saveStripeSettings()"><p>Save</p></a>
+              <div class="clear"></div>
+            <p>Secret Key</p><input type="text" id="stripe_secret" placeholder="E.g: sk_test_000000000000000000000000" />
+            <p>Publishable Key</p><input type="text" id="stripe_publish" placeholder="E.g: pk_test_000000000000000000000000" />
+            <h3>Access Stripe</h3>
+            <a href="https://dashboard.stripe.com/login" class="submit"><p>Stripe Dashboard</p></a>
+            <h3>Need Stripe Account?</h3>
+            <a href="https://dashboard.stripe.com/register" class="submit"><p>Sign Up</p></a>
+            <br/>
+          </div>
       </header>
       
       <div class="section">

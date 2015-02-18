@@ -72,9 +72,6 @@ header h2{
     background: #FFFFFF;
     top: 50px;
     z-index:10;
-}
-
-#popup-nav{
     display: none;
 }
 
@@ -212,7 +209,7 @@ header h2{
     font-size: 16px;
 }
 
-.section .section-body .section-content .submit{
+.submit{
     width: 100%;
     margin: 0 auto;
     display:block;
@@ -224,7 +221,7 @@ header h2{
     text-decoration: none;
 }
 
-.section .section-body .section-content .submit p{
+.submit p{
     margin: 0;
     position: relative;
     top: 13px;
@@ -561,4 +558,63 @@ input#mydate{
     font-size: 18px;
     margin-bottom: 10px;
     font-family: 'RobotoLight';
+}
+
+.finance-settings{
+    position: absolute;
+    width: 100%;
+    background: #FFFFFF;
+    top: 50px;
+    z-index:10;
+    display: none;
+}
+
+.finance-settings p, .finance-settings h3{
+    padding: 10px;
+    margin: 0;
+}
+
+.finance-settings input{
+    width: 90%;
+    margin-bottom: 10px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-family: 'RobotoLight';
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    border: none;
+    background: #e2f2ff;
+    color: #2a415c;
+}
+
+.finance-settings .submit{
+    width: 90%;
+}
+
+.finance-settings .submit p {
+    top: 7px;
+}
+
+.finance-settings .arrow-head{
+    position: absolute;
+    right: 17px;
+    top: -6px;
+}
+
+.finance-settings .submit.save_stripe{
+    width: 30%;
+    height: 30px;
+    float: right;
+    position: relative;
+    right: 10px;
+    top: 10px;
+}
+
+.finance-settings .submit.save_stripe p{
+    top: 0px;
+    padding: 5px;
 }
