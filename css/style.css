@@ -618,3 +618,38 @@ input#mydate{
     top: 0px;
     padding: 5px;
 }
+
+.fixture-event-create h3{
+    width: 40%;
+    float: left;
+    margin: 0;
+    position: relative;
+    top: 5px;
+}
+
+.fixture-event-create input{
+    width: 58%;
+    float: left;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    padding: 8px 8px;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'RobotoLight';
+}
+
+.fixture-event-create #newFixtureDate{
+    background:none;
+}
+
+.fixture-event-create select{
+    width: 27%;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    padding: 8px 8px;
+    border: none;
+    box-sizing: border-box;
+    font-family: 'RobotoLight';
+}
