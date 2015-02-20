@@ -24,22 +24,7 @@ function initialize() {
     directionsDisplay.setMap(map);
 }
 
-function calcRoute(start) {
-    var end = "WS7 4TS";
-    var request = {
-      origin:start,
-      destination:end,
-      travelMode: google.maps.TravelMode.DRIVING
-    };
-    directionsService.route(request, function(response, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    }
-    });
-}
-
 function displayAndWatch(position) {
-    // set current position
     setCurrentPosition(position);
 }
 
@@ -58,8 +43,33 @@ function setCurrentPosition(pos) {
     
     var start = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
     
-    calcRoute(start);
+    /*$.ajax({
+        url:"http://teamanage.co.uk/scripts/login-signup.php",
+        type: "POST",
+        data: { email_address: email_address, password: password, team_name: team_name },
+        success:function(data){
+            calcRoute(data,start);
+        }
+    });*/
     
+    calcRoute(start);
+}
+
+function calcRoute(start) {
+    
+    $('#event_name').html("AWAY vs Lower Farm");
+    
+    var end = "WS7 4TS";
+    var request = {
+      origin:start,
+      destination:end,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    }
+    });
 }
 
 function locError(error) {
