@@ -686,6 +686,12 @@ input#mydate{
     font-size: 15px;
 }
 
+.section #left-content h2{
+    float: none;
+    left: 0;
+    font-size: 20px;
+}
+
 .section #right-content{
     float: right;
     width: 30%;

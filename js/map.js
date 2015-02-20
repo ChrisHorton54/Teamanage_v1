@@ -3,7 +3,7 @@ var directionsService = new google.maps.DirectionsService();
 var map;
 
 function loadMap(){
-    
+    retrieveEvent();
     initialize();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
@@ -13,12 +13,43 @@ function loadMap(){
     }
     
 }
+
+function retrieveEvent(){
+    var clubID = localStorage.getItem("clubID");
+    var eventID = localStorage.getItem("eventID");
+    var eventType = $('#event-type').html(); 
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/events/events.php",
+        type: "POST",
+        data: { type: "view-event", eventType: eventType, clubID: clubID, eventID: eventID},
+        success:function(data){
+            populateEvent(data);
+        }
+    });
+}
+
+function populateEvent(data){
+    
+    var info = JSON.parse(data);
+    if(info['empty_event'] == "true"){
+        alert("The event does not contain the correct information. Please contact Teamanage at contact@teamanage.co.uk.");
+    } else {
+        $('#event-name').html(info['name']);
+        $('#event-time').html(info['time']);
+        $('#event-postcode').html(info['postcode']);
+        $('#event-location').html(info['place_name']);
+        $('#event-date').html(info['date']);
+        localStorage.setItem("eventPostcode",info['postcode']);
+    }
+}
+
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
-    var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+    var uk = new google.maps.LatLng(52.489471, -1.898575);
     var mapOptions = {
-    zoom:7,
-    center: chicago
+    zoom:6,
+    center: uk
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     directionsDisplay.setMap(map);
@@ -39,27 +70,15 @@ function setCurrentPosition(pos) {
     map.panTo(new google.maps.LatLng(
             pos.coords.latitude,
             pos.coords.longitude
-        ));
+    ));
     
     var start = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-    
-    /*$.ajax({
-        url:"http://teamanage.co.uk/scripts/login-signup.php",
-        type: "POST",
-        data: { email_address: email_address, password: password, team_name: team_name },
-        success:function(data){
-            calcRoute(data,start);
-        }
-    });*/
-    
+
     calcRoute(start);
 }
 
-function calcRoute(start) {
-    
-    $('#event_name').html("AWAY vs Lower Farm");
-    
-    var end = "WS7 4TS";
+function calcRoute(start) {    
+    var end = localStorage.getItem("eventPostcode");
     var request = {
       origin:start,
       destination:end,
@@ -70,6 +89,8 @@ function calcRoute(start) {
       directionsDisplay.setDirections(response);
     }
     });
+    
+    localStorage.removeItem("eventPostcode");
 }
 
 function locError(error) {
