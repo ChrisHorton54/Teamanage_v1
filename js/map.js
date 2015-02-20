@@ -24,7 +24,7 @@ function initialize() {
     directionsDisplay.setMap(map);
 }
 
-function calcRoute() {
+function calcRoute(start) {
     var end = "WS7 4TS";
     var request = {
       origin:start,
