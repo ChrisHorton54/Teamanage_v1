@@ -19,6 +19,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrieveEvents();
         }
     </script>
   </head>
@@ -34,7 +36,7 @@
                         <img src="../../img/squad-nav.jpg" title="Squad" alt="Squad" />
                         <h3>Squad</h3>
                     </div></a> 
-                <a href=""><div class="nav-block second">
+                <a href="events/events.html"><div class="nav-block second">
                         <img src="../../img/events-nav.jpg" title="Events" alt="Events" />
                         <h3>Events</h3>
                     </div></a> 
@@ -69,16 +71,27 @@
       </header>
       
       <div class="section">
-          <h2>Events</h2>
+          <h2>Fixtures</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
+                <ul class="recent-payment-list" id="fixtures-population"></ul>
+            </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      <div class="section">
+          <h2>Special Events</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <ul class="recent-payment-list" id="events-population"></ul>
             </div>
         </div>
       </div>
       <div class="clear"></div>
       
-      <script type="text/javascript" src="../../js/management/squad.js"></script>
+      <script type="text/javascript" src="../../js/management/topEvents.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
       <script type="text/javascript" src="../../phonegap.js"></script>
       <script type="text/javascript" src="../../cordova.js"></script>
