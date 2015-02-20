@@ -28,3 +28,30 @@ function allEvents(data){
     $('#fixtures-population').html(fixtureslist);
     $('#events-population').html(eventslist);
 }
+
+function findAllEvents(type,date_num){
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/events/events.php",
+        type: "POST",
+        data: {type: type, clubID: clubID, date_selected: date_num},
+        success:function(data){
+            foundAllRelatedEvents(data);
+        }
+    });
+}
+
+function foundAllRelatedEvents(data){
+    var info = JSON.parse(data);
+    
+    if(info['empty_event'] == "true"){
+         $('#event-name').html("There are no " + info['empty_for'] + " for this date.");
+        $('#event-time').html("");
+        localStorage.removeItem("eventID");
+    } else {
+        $('#event-name').html(info['name']);
+        $('#event-time').html(info['time']);
+        localStorage.setItem("eventID",info['eventID']);
+    }
+}

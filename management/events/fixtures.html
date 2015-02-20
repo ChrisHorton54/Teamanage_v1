@@ -5,7 +5,9 @@
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/glDatePicker.flatwhite.css" /> 
     <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../../js/glDatePicker.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -18,6 +20,23 @@
             $('#club_name').html(localStorage.getItem('club_name'));
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
+            });
+            $('#newFixtureDate').glDatePicker(
+            {
+                showAlways: true,
+                cssName: 'flatwhite',
+                prevArrow: '<',
+                nextArrow: '>',
+                onClick: function(target, cell, date, data) {
+                    var month = ['January','Febuary','March','April','May','June','July','August','September','October','November','December']; 
+                    var month_text = month[date.getMonth()];
+                    var date_txt = date.getDate() + " " + month_text + " " + date.getFullYear();
+                    var month_num = date.getMonth() + 1;
+                    var date_num = date.getFullYear() + '-' + month_num + '-' + date.getDate();
+                    target.val(date_txt);
+                    $('#date_selected').html(date_num);
+                    findAllEvents('all-fixtures',date_num);
+                }
             });
         }
     </script>
@@ -34,7 +53,7 @@
                         <img src="../../img/squad-nav.jpg" title="Squad" alt="Squad" />
                         <h3>Squad</h3>
                     </div></a> 
-                <a href="events/events.html"><div class="nav-block second">
+                <a href="events.html"><div class="nav-block second">
                         <img src="../../img/events-nav.jpg" title="Events" alt="Events" />
                         <h3>Events</h3>
                     </div></a> 
@@ -73,12 +92,28 @@
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
+                <div class="fixture-event-info">
+                    <div id="left-content">
+                        <input type="text" id="newFixtureDate" gldp-id="mydate" value="Please select a date"/>
+                        <h3 id="event-name">N/A</h3>
+                    </div>
+                    <div id="right-content">
+                        <h3 id="event-time">N/A</h3>
+                    </div>
+                </div>
+                <p id="date_selected" style="display:none;"></p>
+                <div class="clear"></div><br/>
+                <div gldp-el="mydate"
+                     style="width:91%; height:300px;">
+                </div>
+                <br/>
+                <a href="#" class="submit fixture-submit"><p>View Fixture</p></a>
             </div>
         </div>
       </div>
       <div class="clear"></div>
       
-      <script type="text/javascript" src="../../js/management/squad.js"></script>
+      <script type="text/javascript" src="../../js/management/topEvents.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
       <script type="text/javascript" src="../../phonegap.js"></script>
       <script type="text/javascript" src="../../cordova.js"></script>
