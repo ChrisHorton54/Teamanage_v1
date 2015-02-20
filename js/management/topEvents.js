@@ -37,21 +37,29 @@ function findAllEvents(type,date_num){
         type: "POST",
         data: {type: type, clubID: clubID, date_selected: date_num},
         success:function(data){
-            foundAllRelatedEvents(data);
+            foundAllRelatedEvents(data,type);
         }
     });
 }
 
-function foundAllRelatedEvents(data){
+function foundAllRelatedEvents(data,type){
     var info = JSON.parse(data);
-    
     if(info['empty_event'] == "true"){
          $('#event-name').html("There are no " + info['empty_for'] + " for this date.");
-        $('#event-time').html("");
-        localStorage.removeItem("eventID");
+         $('#event-time').html("");
+         $('.submit').addClass("disabled");
+         $('.submit').attr("href","#");
+         localStorage.removeItem("eventID");
     } else {
         $('#event-name').html(info['name']);
         $('#event-time').html(info['time']);
+        if(type == "all-fixtures"){
+            $('.submit').removeClass("disabled");
+            $('.submit').attr("href","view-fixture.html");
+        } else {
+            $('.submit').removeClass("disabled");
+            $('.submit').attr("href","view-special-event.html");
+        }
         localStorage.setItem("eventID",info['eventID']);
     }
 }

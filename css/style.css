@@ -699,3 +699,7 @@ input#mydate{
     position: relative;
     right: 10px;
 }
+
+.submit.disabled{
+    background: #A0A0A0;
+}
