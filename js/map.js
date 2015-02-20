@@ -25,8 +25,7 @@ function initialize() {
 }
 
 function calcRoute() {
-    var start = document.getElementById('start').value;
-    var end = document.getElementById('end').value;
+    var end = "WS7 4TS";
     var request = {
       origin:start,
       destination:end,
@@ -42,9 +41,6 @@ function calcRoute() {
 function displayAndWatch(position) {
     // set current position
     setCurrentPosition(position);
-
-    // watch position
-    watchCurrentPosition();
 }
 
 function setCurrentPosition(pos) {
@@ -59,16 +55,11 @@ function setCurrentPosition(pos) {
             pos.coords.latitude,
             pos.coords.longitude
         ));
-}
-
- function watchCurrentPosition() {
-    var positionTimer = navigator.geolocation.watchPosition(
-        function (position) {
-            setMarkerPosition(
-                currentPositionMarker,
-                position
-            );
-        });
+    
+    var start = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+    
+    calcRoute(start);
+    
 }
 
 function locError(error) {
