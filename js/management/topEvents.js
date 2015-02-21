@@ -108,7 +108,7 @@ function produceList(data){
 function viewResult(resultsID){
     localStorage.setItem("resultsID",resultsID);
     
-    window.location = "view-result.html";
+    window.location = "edit-result.html";
 }
 
 
