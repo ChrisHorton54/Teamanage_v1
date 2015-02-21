@@ -16,6 +16,7 @@ function allEvents(data){
     var fixtureslist = "";
     var eventslist = "";
     var resultslist = "";
+    var score = "";
     
     for(i = 0; i < info['fixtures'].length; i++){
         fixtureslist = fixtureslist + '<li><span><h3>' + info['fixtures'][i]['date'] + '</h3><p>' + info['fixtures'][i]['name'] + '</p></span><h2>' + info['fixtures'][i]['time'] + '</h2><div class="clear"></div></li>';
@@ -25,8 +26,18 @@ function allEvents(data){
         eventslist = eventslist + '<li><span><h3>' + info['events'][i]['date'] + '</h3><p>' + info['events'][i]['name'] + '</p></span><h2>' + info['events'][i]['time'] + '</h2><div class="clear"></div></li>';
     }
     
+     for(i = 0; i < info['results'].length; i++){
+         if(info['results'][i]['edit'] == 0){
+             score = "N/A";
+         } else {
+             score = info['results'][i]['score'];
+         }
+        resultslist = resultslist + '<li><span><h3>' + info['results'][i]['date'] + '</h3><p>' + info['results'][i]['name'] + '</p></span><h2>' + score + '</h2><div class="clear"></div></li>';
+    }
+    
     $('#fixtures-population').html(fixtureslist);
     $('#events-population').html(eventslist);
+    $('#results-population').html(resultslist);
 }
 
 function findAllEvents(type,date_num){
@@ -63,3 +74,45 @@ function foundAllRelatedEvents(data,type){
         localStorage.setItem("eventID",info['eventID']);
     }
 }
+
+function getResults(){
+    var clubID = localStorage.getItem('clubID');
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/events/events.php",
+        type: "POST",
+        data: {type: "all-results", clubID: clubID},
+        success:function(data){
+            produceList(data);
+        }
+    });
+}
+
+function produceList(data){
+    var info = JSON.parse(data);
+    var list = "";
+    var score = "";
+    console.log(info);
+    
+    for(i = 0; i < info.length; i++){
+        if(info[i]['edit'] == 0){
+            score = "N/A";
+        } else {
+            score = info[i]['score'];
+        }
+        list = list + '<a href="#" onclick="viewResult(' + info[i]['resultsID'] + ')"><li><span><h3>' + info[i]['date'] + '</h3><p>' + info[i]['name'] + '</p></span><h2>' + score + '<img class="score-right" src="../../img/arrow-list.png" /></h2><div class="clear"></div></li></a>';
+    }
+    $('.recent-payment-list').html(list);
+}
+
+function viewResult(resultsID){
+    localStorage.setItem("resultsID",resultsID);
+    
+    window.location = "view-result.html";
+}
+
+
+
+
+
+

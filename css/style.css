@@ -709,3 +709,9 @@ input#mydate{
 .submit.disabled{
     background: #A0A0A0;
 }
+
+.recent-payment-list .score-right{
+    top: 7px;
+    position: relative;
+    margin-left: 10px;
+}
