@@ -111,6 +111,73 @@ function viewResult(resultsID){
     window.location = "edit-result.html";
 }
 
+function populateSpecificResult(){
+    var resultsID = localStorage.getItem("resultsID");
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/events/events.php",
+        type: "POST",
+        data: {type: "specific-result", resultsID: resultsID, clubID: clubID},
+        success:function(data){
+            resultPopulate(data);
+        }
+    });
+    
+}
+
+function resultPopulate(data){
+    var info = JSON.parse(data);
+    var select = '<select class="player_name" style="width:100%"><option value="" disabled>Select Player</option><option value="0">No Player</option>';
+    var players = "";
+    
+    $('#result_name').html(info['result_info']['name']);
+    $('#result_date').html(info['result_info']['date']);
+    $('#home_score').val(info['result_info']['home_score']);
+    $('#away_score').val(info['result_info']['away_score']);
+    
+    for(i = 0; i < info['players'].length; i++){
+        select = select + ' <option value="' + info['players'][i]['playerID'] + '">' + info['players'][i]['player_name'] + '</option>';
+    }
+    
+    select = select + '</select>';
+
+    for(i = 1; i < 12; i++){
+        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" min="0" max="99" style="width: 100%;" type="number" /></td><td width="16%"><input class="player_rating" min="0" max="99" style="width: 100%;" type="number" /></td><td width="16%"><input class="star_player" style="width: 100%;" type="number" /></td></tr>';
+    }
+
+    players = players + '<td width="50%">Subs</td><td width="16%"></td><td width="16%"></td><td width="16%"></td>';
+
+    for(i = 12; i < 15; i++){
+        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" style="width: 100%;" type="number" /></td><td width="16%"><input class="player_rating" style="width: 100%;" type="number" /></td><td width="16%"><input class="star_player" style="width: 100%;" type="number" /></td></tr>';
+    }
+
+    $("#player_info tbody").html(players);
+}
+
+function saveResult(){
+    var players = [];
+    
+    for(i = 0; i < 14; i++){
+        var j = i + 1;
+        var player = [];
+        player['playerID'] = $("#player_"+j+" .player_name option:selected").val();
+        player['player_goals'] = $("#player_"+j+" .player_goals").val();
+        player['player_rating'] = $("#player_"+j+" .player_rating").val();
+        player['star_player'] = $("#player_"+j+" .star_player").val();
+        
+        players[i] = player;
+    }
+    
+    var home_score = $('#home_score').val();
+    var away_score = $('#away_score').val();
+    
+    console.log(players);
+    console.log(home_score);
+    console.log(away_score);
+
+}
+
 
 
 
