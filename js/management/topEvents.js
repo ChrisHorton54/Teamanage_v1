@@ -137,26 +137,28 @@ function resultPopulate(data){
     $('#away_score').val(info['result_info']['away_score']);
     
     for(i = 0; i < info['players'].length; i++){
-        select = select + ' <option value="' + info['players'][i]['playerID'] + '">' + info['players'][i]['player_name'] + '</option>';
+        select = select + ' <option value="' + info['players'][i]['playerID'] + '">' + info['players'][i]['player_name'] + ' (' + info['players'][i]['position'] + ')</option>';
     }
     
     select = select + '</select>';
 
     for(i = 1; i < 12; i++){
-        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" min="0" max="99" style="width: 100%;" type="number" /></td><td width="16%"><input class="player_rating" min="0" max="99" style="width: 100%;" type="number" /></td><td width="16%"><input class="star_player" style="width: 100%;" type="number" /></td></tr>';
+        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" min="0" max="99" value="0" style="width: 100%;" type="number" /></td><td width="16%"><input class="player_rating" min="0" max="99" style="width: 100%;" value="0" type="number" /></td><td width="16%"><img class="star_player" src="../../img/star.png" onclick="changeStar(this)"/></td></tr>';
     }
 
     players = players + '<td width="50%">Subs</td><td width="16%"></td><td width="16%"></td><td width="16%"></td>';
 
     for(i = 12; i < 15; i++){
-        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" style="width: 100%;" type="number" /></td><td width="16%"><input class="player_rating" style="width: 100%;" type="number" /></td><td width="16%"><input class="star_player" style="width: 100%;" type="number" /></td></tr>';
+        players = players + '<tr id="player_' + i + '"><td width="50%">' + select + '</td><td width="16%"><input class="player_goals" style="width: 100%;" type="number" value="0" /></td><td width="16%"><input class="player_rating" style="width: 100%;" type="number" value="0" /></td><td width="16%"><img class="star_player" src="../../img/star.png" onclick="changeStar(this)"/></td></tr>';
     }
 
     $("#player_info tbody").html(players);
 }
 
-function saveResult(){
+function saveResult(){    
     var players = [];
+    var errors = [];
+    var errorMessagePlayers = false;
     
     for(i = 0; i < 14; i++){
         var j = i + 1;
@@ -164,22 +166,63 @@ function saveResult(){
         player['playerID'] = $("#player_"+j+" .player_name option:selected").val();
         player['player_goals'] = $("#player_"+j+" .player_goals").val();
         player['player_rating'] = $("#player_"+j+" .player_rating").val();
-        player['star_player'] = $("#player_"+j+" .star_player").val();
         
-        players[i] = player;
-    }
+        if($("#player_"+j+" .star_player").hasClass("active_star")){
+            player['star_player'] = "1";
+        } else {
+            player['star_player'] = "0";
+        }
+        
+        var playerInfo = {playerID: player['playerID'], player_goals: player['player_goals'], player_rating: player['player_rating'], star_player: player['star_player']};
+        
+        players.push(playerInfo);
+    }   
     
     var home_score = $('#home_score').val();
     var away_score = $('#away_score').val();
     
-    console.log(players);
-    console.log(home_score);
-    console.log(away_score);
+    for(i = 0; i < players.length; i++){
+        if(players[i]['playerID'] == 0){
+            errors.push(i);
+        }
+    }
+    
+    for(i = 0; i < errors.length; i++){
+        if(errors[i] < 11){
+            errorMessagePlayers = true;
+        }
+    }
 
+    if(errorMessagePlayers == true){
+        alert("Please select the eleven players that played during the fixture (Subs are optional).")
+    } else {
+        var resultsID = localStorage.getItem("resultsID");
+        var clubID = localStorage.getItem("clubID");
+        var home_score = $("#home_score").val();
+        var away_score = $("#away_score").val();
+        
+        $.ajax({
+            url:"http://teamanage.co.uk/scripts/management/events/events.php",
+            type: "POST",
+            data: {type: "update-result", resultsID: resultsID, clubID: clubID, players: players, home_score: home_score, away_score: away_score},
+            success:function(data){
+                updateResultInfo(data);
+            }
+        });
+    }
 }
 
+function updateResultInfo(data){
+    var info = JSON.parse(data);
+    
+    console.log(data);
+}
 
-
-
-
-
+function changeStar(player){
+    if($(".star_player").hasClass("active_star")){
+        $(".star_player").removeClass("active_star");
+    }
+    
+    $(player).addClass("active_star");
+    
+}

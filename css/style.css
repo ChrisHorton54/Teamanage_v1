@@ -715,3 +715,16 @@ input#mydate{
     position: relative;
     margin-left: 10px;
 }
+
+.star_player{
+    opacity: 0.4;
+    margin: 0 auto;
+    display: block;
+    -webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.star_player.active_star{
+    opacity: 1;
+}

@@ -71,13 +71,23 @@ function financeInfo(){
 
 function outputFinance(data){
     var information = JSON.parse(data); 
-
     $("#fin-player-name").html(information['player_name']);
     $("#fin-player-image").attr("src",information['image_src']);
     $("#fin-subs-owed").val(information['subs_owed']);
     $("#fin-fines-owed").val(information['fines_owed']);
     $("#fin-overall-subs").html("&pound;" + information['overall_subs']);
     $("#fin-overall-fines").html("&pound;" + information['overall_fines']);
+    
+    if(information['subs_owed'] == "0.00"){
+        $(".cash-subs").attr("onclick","");
+        $(".cash-subs p").html("No subs to pay");
+    }
+    
+    if(information['fines_owed'] == "0.00"){
+        $(".cash-fines").attr("onclick","");
+        $(".cash-fines p").html("No fines to pay");
+    }
+    
 }
 
 function saveFinances(){
