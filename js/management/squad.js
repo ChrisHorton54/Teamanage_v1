@@ -262,9 +262,9 @@ function retrievePlayers(){
 function outputPlayers(data){
     var information = JSON.parse(data);
     var playerli = "";
-    
+  
     for(i = 0; i < information.length; i++){
-       playerli += '<li onclick="player_selected(this.value)" value="' + information[i]['playerID'] +'"><img src="' + information[i]['image_src'] + '" /><div class="text-content"><h2>' + information[i]['player_name'] + '</h2><p>' + information[i]['position'] + '</p></div><img id="player-arrow" src="../../img/arrow-list.png" /><div class="clear"></div></li></div><br/>';
+       playerli += '<li onclick="player_selected(this.value)" value="' + information[i]['playerID'] +'"><img src="' + information[i]['image_src'] + '" /><div class="text-content"><h2>' + information[i]['player_name'] + '</h2><p>' + information[i]['position'] + '</p></div><img style="float:right;" id="player-arrow" src="../../img/arrow-list.png" /><h2 class="overall-stats">' + information[i]['overall_stats'] + '</h2><div class="clear"></div></li></div><br/>';
     }
     
     $(".player_listing").html(playerli);

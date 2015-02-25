@@ -341,6 +341,14 @@ header h2{
     display: none;
 }
 
+.section .section-body .section-content .player_listing li .overall-stats{
+    margin: 0;
+    float: right;
+    left: -13px;
+    position: relative;
+    top: 9px;
+}
+
 .section .section-body .section-content .player-link{
     cursor: pointer;
 }
