@@ -728,3 +728,136 @@ input#mydate{
 .star_player.active_star{
     opacity: 1;
 }
+
+.background-mask{
+    display: none;
+    background: #000000;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.mask-active{
+     opacity: 0.7;
+}
+
+.warning-box{
+    width: 80%;
+    background: #FFFFFF;
+    padding: 10px;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    display: none;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity .5s ease-in-out;
+   -moz-transition: opacity .5s ease-in-out;
+   -webkit-transition: opacity .5s ease-in-out;
+}
+
+.warning-box.box-active{
+     opacity: 1;
+}
+
+.warning-box h2, .warning-box p{
+    text-align: center;
+}
+
+.warning-box h2{
+    margin: 4px;
+}
+
+.warning-buttons .button p{
+    padding: 10px 0px;
+    color: #000000;
+}
+
+.warning-buttons .proceed{
+    background: #56FF5E;
+}
+
+.warning-buttons .cancel{
+    background: #FF2D2D;
+}
+
+#player_info select, #player_info input{
+    border: none;
+    height: 30px;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0px 10px;
+}
+
+#player_info h3{
+    font-size: 16px;
+    margin: 0;
+    font-weight: 400;
+}
+
+#result_date{
+    margin: 0px 0px 10px 0px;
+}
+
+#result_scores{
+    margin: 0 auto;
+    width: 188px;
+}
+
+#result_scores .score-50 #home_score{
+    width: 80px;
+    height: 60px;
+    float: left;
+    text-align: center;
+    font-size: 26px;
+    font-family: 'RobotoLight';
+    color: #2a415c;
+}
+
+#result_scores .score-50 #away_score{
+    width: 80px;
+    height: 60px;
+    float: left;
+    text-align: center;
+    font-size: 26px;
+    font-family: 'RobotoLight';
+    color: #2a415c;
+}
+
+#result_scores .score-50{
+    width: 45%;
+    float: left;
+}
+
+#result_scores .score-50 input{
+    border:none;
+}
+
+.score-spacer{
+    float: left;
+    width: 18px;
+    text-align: center;
+    position: relative;
+}
+.score-spacer.view{
+    top: 24px;
+}
+.score-spacer.edit{
+    top: 40px;
+}

@@ -30,6 +30,7 @@
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="club_name"></h2>
+        <img class="add-player" onclick="editModeResult()" src="../../img/edit.png" alt="Edit Result" title="Edit Result" />
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -80,12 +81,12 @@
                 <div id="result_scores">
                     <div class="score-50">   
                     <p>Your Goals</p><br/>
-                        <input id="home_score" type="number" min="0" max="99" />
+                        <p id="home_score"></p>
                     </div>
-                    <h3 class="score-spacer edit"> : </h3>
+                    <h3 class="score-spacer view"> : </h3>
                     <div class="score-50">
                         <p>Other Goals</p><br/>
-                        <input id="away_score" type="number" min="0" max="99"/>
+                        <p id="away_score"></p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -94,7 +95,6 @@
         </div>
       </div>
       <div class="clear"></div>
-      
       <div class="section">
           <h2 id="result_name">Players</h2>
           <div class="clear"></div>
@@ -112,13 +112,20 @@
                     <tbody>
                     </tbody>
                 </table>
-                <br/>
-                <a href="#" class="submit fixture-submit" onclick="saveResult()"><p>Save Result</p></a>
                 <div class="clear"></div>
             </div>
         </div>
       </div>
       <div class="clear"></div>
+      <div class="background-mask"></div>
+      <div class="warning-box">
+        <h2>Editing the result</h2>
+        <p>If you continue to edit the result you will need to re-insert each players statistics for this fixture.</p>
+        <div class="warning-buttons">
+            <div class="proceed button" onclick="buttonConfirm('true')"><p>OK</p></div>
+            <div class="cancel button" onclick="buttonConfirm('false')"><p>Cancel</p></div>
+        </div>
+      </div>
       <br/>
       <script type="text/javascript" src="../../js/management/topEvents.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
