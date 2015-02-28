@@ -142,7 +142,11 @@ function playerAmount(){
 }
 
 function returnPlayerAmount(data){
-    $("#player_amount").html(data);
+   var info = JSON.parse(data);
+    console.log(info);
+    
+    $("#formation_selected").html(info['formation']);
+    $("#player_amount").html(info['count']);
 }
 
 function captureImage(){

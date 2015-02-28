@@ -863,9 +863,23 @@ input#mydate{
     text-align: center;
     position: relative;
 }
+
 .score-spacer.view{
     top: 24px;
 }
+
 .score-spacer.edit{
     top: 40px;
+}
+
+#formation_selected{
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: 400;
+    float: left;
+}
+
+#squad_rating{
+    float:right;
+    left: -15px;
 }

@@ -36,7 +36,7 @@ $(document).ready(function(){
 
 function saveFormationInfo(data){
     alert("Your formation has been updated");
-    window.location = "squad.html";
+    window.location = "formation-select.html";
 }
 
 function formationChange(){
@@ -98,6 +98,9 @@ function formationChange(){
 function checkPlayerPositions(data){
     
     var info = JSON.parse(data);
+    
+    localStorage.setItem("formation_selected",info['formation'] );
+    
     $('#formationChange option[value="' + info['formation'] + '"]').attr("selected", "selected");
     
     for(i = 0; i < 11; i++){
