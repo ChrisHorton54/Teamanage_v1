@@ -6,7 +6,7 @@ function loadMap(){
     retrieveEvent();
     initialize();
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
+ navigator.geolocation.getCurrentPosition(displayAndWatch, locError);
     } else {
         // tell the user if a browser doesn't support this amazing API
         alert("Your browser does not support the Geolocation API!");

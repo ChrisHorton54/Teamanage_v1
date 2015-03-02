@@ -18,7 +18,7 @@ function drawLineChart(){
     c1.width = $(".section-content").width();
 
     var data1 = {
-      labels : ["1","2","3","4","5"],
+      labels : ["Game 1","Game 2","Game 3","Game 4","Game 5"],
       datasets : [
         {
           fillColor : "rgba(255,255,255,.1)",
@@ -31,15 +31,16 @@ function drawLineChart(){
     }
 
     var options1 = {
-      scaleFontColor : "rgba(255,255,255,1)",
-      scaleLineColor : "rgba(255,255,255,1)",
-      scaleShowGridLines : true,
-      scaleGridLineColor : "rgba(0,0,0,.05)",
-      bezierCurve : true,
-      scaleOverride : true,
-      scaleSteps : 1,
-      scaleStepWidth : 100,
-      scaleStartValue : 0
+        scaleBeginAtZero : true,
+        scaleShowGridLines : true,
+        scaleGridLineColor : "rgba(0,0,0,.05)",
+        scaleGridLineWidth : 1,
+        scaleShowHorizontalLines: true,
+        scaleShowVerticalLines: true,
+        barShowStroke : true,
+        barStrokeWidth : 2,
+        barValueSpacing : 5,
+        barDatasetSpacing : 1
     }
 
     new Chart(c1.getContext("2d")).Line(data1,options1)
