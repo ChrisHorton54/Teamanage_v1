@@ -7,6 +7,7 @@
     <link href="../../css/style.css" rel="stylesheet">
       <link href="../../css/chart.css" rel="stylesheet">
     <script type="text/javascript" src="../../cordova.js"></script>
+      <script type="text/javascript" src="../../js/Chart.min.js"></script>
     <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
@@ -20,6 +21,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            drawBarChart();
+            drawLineChart();
         }
     </script>
     </head>
@@ -73,7 +76,21 @@
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <div id="doughnutChart" class="chart"></div>
+                <div class="goals-chart">
+                    <div class="goals-scored">
+                        <p>Goals Scored: <span></span></p>
+                        <div class="chart"></div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="goals-conceeded">
+                        <p>Goals Conceeded: <span></span></p>
+                        <div class="chart"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                
+                <canvas id="c1" width="560" height="260" style="width: 560px; height: 260px;"></canvas>
+                
             </div>
         </div>
       </div>
