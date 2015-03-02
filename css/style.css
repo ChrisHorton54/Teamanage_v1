@@ -883,3 +883,28 @@ input#mydate{
     float:right;
     left: -15px;
 }
+
+#formationChange{
+    height: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2a415c;
+    border: none;
+    padding: 0px 10px;
+    width: 80px;
+    margin: 10px 0px;
+}
+table#player_pos{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2a415c;
+}
+select.player_name{
+    height: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #2a415c;
+    border: none;
+    padding: 0px 10px;
+    width: 100%;
+}
