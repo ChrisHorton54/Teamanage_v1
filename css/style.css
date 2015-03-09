@@ -221,6 +221,13 @@ header h2{
     text-decoration: none;
 }
 
+.save-formation{
+    float: right;
+    width: 50%;
+    margin-top: 5px;
+    height: 42px;
+}
+
 .submit p{
     margin: 0;
     position: relative;
@@ -891,8 +898,9 @@ input#mydate{
     color: #2a415c;
     border: none;
     padding: 0px 10px;
-    width: 80px;
+    width: 100px;
     margin: 10px 0px;
+    float: left;
 }
 
 table#player_pos{

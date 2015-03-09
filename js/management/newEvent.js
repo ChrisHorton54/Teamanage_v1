@@ -43,7 +43,7 @@ function newEvent(event_type){
 
 function eventSuccess(data, event_type){
     var info = JSON.parse(data);
-    console.log()
+    console.log(info);
     if(info['insert'] == "success"){
         alert("Your " + event_type + " has been added.");
         window.location = "events.html";
