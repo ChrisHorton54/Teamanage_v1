@@ -249,6 +249,8 @@ function saveResult(){
 function updateResultInfo(data){
     var info = JSON.parse(data);
     
+    console.log(info);
+    
     if(info['update'] == "Success"){
         alert("You result has now been updated.");
         window.location = "all-results.html";

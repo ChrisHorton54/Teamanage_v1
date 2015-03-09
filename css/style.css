@@ -12,7 +12,7 @@ body{
     background: #f4f8ff;
 }
 
-p,a,h1,h2,h3{
+p,a,h1,h2,h3,h4{
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
     color: #2a415c;
@@ -682,7 +682,7 @@ input#mydate{
 }
 
 .section #left-content{
-    width: 70%;
+    width: 50%;
     float: left;
 }
 
@@ -701,6 +701,13 @@ input#mydate{
     font-size: 15px;
 }
 
+.section #left-content h4{
+    font-size: 26px;
+    margin:0;
+    top: 5px;
+    position: relative;
+}
+
 .section #left-content h2{
     float: none;
     left: 0;
@@ -709,16 +716,28 @@ input#mydate{
 
 .section #right-content{
     float: right;
-    width: 30%;
+    width: 50%;
+}
+
+.section #right-content h2, .section #right-content h3, .section #right-content p{
+    text-align: right;
+    margin: 0;
+    position: relative;
+    float: right;
+    right: 5px;
 }
 
 .section #right-content h3{
-    text-align: right;
-    font-size: 26px;
     top: 12px;
-    margin: 0;
-    position: relative;
     right: 10px;
+    font-size: 26px;
+}
+
+.section #right-content h2{
+    top: 5px;
+    right: 5px;
+    left: -5px;
+    font-size: 26px;
 }
 
 .submit.disabled{
@@ -939,4 +958,19 @@ select.player_name{
 .goals-chart .goals-conceeded .chart{
     background: #FA4C4C;
     float: right;
+}
+
+.column.col-3{
+    width: 33.3%;
+    float: left;
+}
+
+.column h3, .column p{
+    text-align: center;
+}
+
+.column h3{
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 22px;
 }
