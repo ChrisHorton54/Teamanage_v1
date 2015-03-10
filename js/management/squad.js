@@ -202,7 +202,7 @@ function getBase64Image(img) {
     return img.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
-function getPhoto(source) 
+function getFile(source) 
 {
     var cameraSource;
     var destinationType;

@@ -1,14 +1,16 @@
-function getPhoto() {
-    navigator.camera.getPicture(
-        uploadPhoto,
-        function(message) { alert('get picture failed'); },
-        {
-            quality         : 50,
-            destinationType : navigator.camera.DestinationType.FILE_URI,
-            mediaType       : navigator.camera.MediaType.ALLMEDIA 
-            sourceType      : navigator.camera.PictureSourceType.PHOTOLIBRARY
-        }
-    );
+function getFile(source) {
+    var cameraSource;
+    var destinationType;
+    
+    cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
+    destinationType = navigator.camera.DestinationType;
+    
+    navigator.camera.getPicture(uploadPhoto, onFail, {
+        quality: 50, 
+        allowEdit: true,
+        targetWidth: 150,
+        destinationType: destinationType.FILE_URI,
+        sourceType: cameraSource});
 }
 
 function uploadPhoto(fileURI) {
@@ -37,4 +39,8 @@ function fail(error) {
     alert("An error has occurred: Code = " + error.code);
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
+}
+
+function onFail(){
+    console.log("FAIL");
 }
