@@ -1,8 +1,7 @@
 function getFile(source) {
-    var cameraSource;
+    
     var destinationType;
     
-    cameraSource = navigator.camera.PictureSourceType.PHOTOLIBRARY;
     destinationType = navigator.camera.DestinationType;
     
     navigator.camera.getPicture(uploadPhoto, onFail, {
@@ -10,7 +9,7 @@ function getFile(source) {
         allowEdit: true,
         targetWidth: 150,
         destinationType: destinationType.FILE_URI,
-        sourceType: cameraSource});
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY});
 }
 
 function uploadPhoto(fileURI) {
