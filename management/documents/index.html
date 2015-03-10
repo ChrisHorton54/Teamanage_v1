@@ -24,10 +24,7 @@
                 $("#popup-nav").fadeToggle("slow");
             });
             
-            $("#fileuploader").uploadFile({
-                url:"http://teamanage.co.uk/scripts/document.php",
-                fileName:"myfile"
-            });
+            var ref = window.open('http://hayageek.com/docs/jquery-upload-file.php', '_blank', 'location=yes');
 
         }
     </script>
@@ -82,8 +79,6 @@
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                  <button id="BtnUpload" onclick="onUpLoadFile();">UpLoad File</button>
-  <input id="BtnFileupload" alt="file not found" type="file"  src="CBSE_Board_Math_Syllabus_for_Class_7.pdf" />
             </div>
         </div>
       </div>
