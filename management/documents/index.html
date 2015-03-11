@@ -23,11 +23,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-        }
-        
-        function uploadDocument(){
-            var clubID = localStorage.getItem("clubID");
-            navigator.app.loadUrl('http://teamanage.co.uk/external/document-upload.php?clubID=' + clubID, { openExternal:true });
+            
+            retrieveDocuments(); 
         }
     </script>
     </head>
@@ -36,6 +33,7 @@
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="club_name"></h2>
+        <img class="add-player" onclick="uploadDocument()" src="../../img/add.png" alt="New Document" title="New Document">
         <div id="popup-nav">
             <div id="popup-nav-content">
                 <img src="../../img/arrow-head.png" class="arrow-head" title="Arrow Head" alt="Arrow Head" />
@@ -52,7 +50,7 @@
                         <h3>Finances</h3>
                     </div></a>
                 <div class="clear"></div>
-                <a href=""><div class="nav-block first">
+                <a href="index.html"><div class="nav-block first">
                         <img src="../../img/doc-nav.jpg" title="Documents" alt="Documents" />
                         <h3>Documents</h3>
                     </div></a> 
@@ -76,18 +74,15 @@
             </div>
         </div>
       </header>
-      <div class="section">
-          <h2>Statistics - All</h2>
+        <div class="section">
+          <h2>Documents</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">            
-                <p onclick="uploadDocument()">link</p>
-                <br/><Br/>
-                <a href="http://teamanage.co.uk/app/documents/26/winter%20menu%202015.pdf" download>Download</a>
+                <ul class="player_listing"></ul>
             </div>
         </div>
       </div>
-        
         <script type="text/javascript" src="../../js/management/documents.js"></script></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
   </body>
