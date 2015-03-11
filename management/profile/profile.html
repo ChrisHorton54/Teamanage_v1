@@ -4,12 +4,12 @@
     <title>Teamanage - Squads</title>
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <link href="../../css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="../../cordova.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
+        
         // PhoneGap is ready
         function onDeviceReady() {
         }
@@ -19,11 +19,11 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-            specificPlayerPopulate();
+            loadProfile();
         }
     </script>
-    </head>
-    <body>
+  </head>
+  <body>
       <img src="../../img/background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
@@ -72,51 +72,63 @@
             </div>
         </div>
       </header>
+      
       <div class="section">
-          <h2>View Player</h2>
+          <h2>Profile</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <div id="player-image">
-                    <img id="player_image-src" src="../../img/basic_player.jpg" style="width:100px;"/>
-                </div>
-                <div id="player-name-section">
-                    <p>Player Name</p>
-                    <input type="text" id="player-name" />
-                </div>
-                <div class="clear"></div>
                 <div id="player-email-section">
-                    <p>Player Email</p>
-                    <input type="email" id="player-email" />
+                    <p>Team Name</p>
+                    <input type="email" id="team-name" value="" placeholder="Team name">
                 </div>
-                <div id="player-description-section">
-                    <p>Player Description</p>
-                    <textarea type="text" id="player-description"></textarea>
-                </div>
-                <div id="player-position-section">
-                    <p>Position</p>
-                    <select id="position">
-                        <option value="Goalkeeper">Goalkeeper</option>
-                        <option value="Defender">Defender</option>
-                        <option value="Midfielder">Midfielder</option>
-                        <option value="Forward">Forward</option>
-                    </select>
-                </div>
-                <div class="clear"></div>
                 <br/>
-              <a href="#" class="submit player-edit" ><p>Save Player</p></a>
+                <a href="#" class="submit save-team-name" ><p>Save Team Name</p></a>
             </div>
         </div>
       </div>
-      <div class="select-photo-type">
-          <div class="photo-lib">
-            <h2>Photo Libary</h2>
-          </div>
-          <div class="photo-camera">
-            <h2>Device Camera</h2>
-          </div>
+      <div class="clear"></div>
+      <div class="section">
+          <h2>Change Email</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="player-email-section">
+                    <p>Email Address</p>
+                    <input type="email" id="manager-email" placeholder="Email Address">
+                </div>
+                <div id="player-email-section">
+                    <p>Confirm</p>
+                    <input type="email" id="manager-confirm-email" placeholder="Email Address">
+                </div>
+                <br/>
+                <a href="" class="submit save-email" ><p>Save Email</p></a>
+            </div>
+        </div>
       </div>
-      <script type="text/javascript" src="../../js/management/squad.js"></script>
+      <div class="clear"></div>
+      <div class="section">
+          <h2>Change Password</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="player-email-section">
+                    <p>Password</p>
+                    <input type="password" id="manager-password" placeholder="Password">
+                </div>
+                <div id="player-email-section">
+                    <p>Confirm</p>
+                    <input type="password" id="manager-confirm-password" placeholder="Password">
+                </div>
+                <br/>
+                <a href="#" class="submit save-password" ><p>Save Password</p></a>
+            </div>
+        </div>
+      </div>
+      <br/>
+    <script type="text/javascript" src="../../js/management/profile.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
+      <script type="text/javascript" src="../../phonegap.js"></script>
+      <script type="text/javascript" src="../../cordova.js"></script>
   </body>
 </html>
