@@ -58,8 +58,8 @@ function uploadDocument(){
 }
 
 function downloadDocument(docName){
-    var documentId = localStorage.getItem("documentID");
-    navigator.app.loadUrl('http://teamanage.co.uk/app/documents/' + documentId + '/' + docName, { openExternal:true });
+    var clubID = localStorage.getItem("clubID");
+    navigator.app.loadUrl('http://teamanage.co.uk/app/documents/' + clubID + '/' + docName, { openExternal:true });
 }
 
 function removeDocument(){

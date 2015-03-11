@@ -23,8 +23,7 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-            
-            retrieveDocuments(); 
+            setTimeout(function(){ retrieveDocuments(); }, 5000);
         }
     </script>
     </head>
