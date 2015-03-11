@@ -24,6 +24,11 @@
                 $("#popup-nav").fadeToggle("slow");
             });
         }
+        
+        function uploadDocument(){
+            var clubID = localStorage.getItem("clubID");
+            navigator.app.loadUrl('http://teamanage.co.uk/external/document-upload.php?clubID=' + clubID, { openExternal:true });
+        }
     </script>
     </head>
     <body>
@@ -76,7 +81,7 @@
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">            
-                <a onclick="navigator.app.loadUrl('http://teamanage.co.uk/external/document-upload.php', { openExternal:true });">Link</a>
+                <p onclick="uploadDocument()">link</p>
             </div>
         </div>
       </div>
