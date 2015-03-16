@@ -111,6 +111,7 @@ header h2{
     margin-top: 20px;
     position: relative;
     padding-bottom: 10px;
+    display:none;
 }
 
 .section h2{
