@@ -111,6 +111,43 @@ $(document).ready(function(){
             }); 
         }
     });
+    
+    $(".profile-player-edit").click(function(){
+        var player_name = $("#player-name-section #player-name").val();
+        var player_des = $("#player-description-section #player-description").val();
+        var player_pos = $("#position option:selected").val();
+        var player_image = $("#player_image-src").attr("src");
+        
+        var playerID = localStorage.getItem("main_playerID");
+        
+        var errors = [];
+        var error_message = "Please fix the following:\n\n";
+        
+        if(player_name == ""){
+            errors.push("Player Name");
+        }
+
+        if(player_des == ""){
+            errors.push("Player Description");
+        }
+        
+        if(errors.length > 0){
+            for(var i = 0; i < errors.length; i++){
+               error_message = error_message.concat(errors[i] + "\n");
+            }
+            
+            alert(error_message);
+        } else {
+            $.ajax({
+                url:"http://teamanage.co.uk/scripts/management/add-player.php",
+                type: "POST",
+                data: { type: "edit-profile-player", player_name: player_name, player_des: player_des, player_pos: player_pos, player_image: player_image, playerID: playerID},
+                success:function(data){
+                    editPlayerProfile(data);
+                }
+            }); 
+        }
+    });
 });
 
 function addNewPlayer(data){
@@ -129,6 +166,14 @@ function editPlayer(data){
     window.location = "../squads/all-players.html";
 }
 
+function editPlayerProfile(data){
+    var info = JSON.parse(data);
+    
+    localStorage.setItem("player_name",info['name']);
+    alert("Your profile has been edited.");
+    window.location = "profile.html";
+}
+
 function playerAmount(){
     var clubID = localStorage.getItem("clubID");
     $.ajax({
@@ -142,8 +187,7 @@ function playerAmount(){
 }
 
 function returnPlayerAmount(data){
-   var info = JSON.parse(data);
-    
+   var info = JSON.parse(data);    
     $("#formation_selected").html(info['formation']);
     $("#player_amount").html(info['count']);
 }
@@ -329,4 +373,35 @@ function populateThePlayerForPlayer(data){
     $("#player-description-section #player-description").html(info['description']);
     $("#player_image-src").attr("src",info['image_src']);
     $("#player-position-section #player-position").html(info['position']);    
+}
+
+function specificProfilePlayerPopulate(){
+    var clubID = localStorage.getItem("clubID");
+    var playerID = localStorage.getItem("main_playerID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/player-info.php",
+        type: "POST",
+        data: {clubID : clubID, playerID: playerID},
+        success:function(data){
+            populateThePlayerProfile(data);
+        }
+    });
+}
+
+function populateThePlayerProfile(data){
+    var info = JSON.parse(data);
+    $("#player-description").val(info['description']);
+    $("#player_image-src").attr("src",info['image_src']);
+    
+    if(info['position'] == "Goalkeeper"){
+        document.getElementById("position").selectedIndex = "0";
+    } else if(info['position'] == "Defender"){
+        document.getElementById("position").selectedIndex = "1";
+    } else if(info['position'] == "Midfielder"){
+        document.getElementById("position").selectedIndex = "2";
+    } else {
+        document.getElementById("position").selectedIndex = "3";
+    }
+    
 }

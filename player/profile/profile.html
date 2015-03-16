@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teamanage - Squads</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="../../cordova.js"></script>
+    <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // Wait for PhoneGap to load     
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // PhoneGap is ready
+        function onDeviceReady() {
+        }
+        
+        window.onload = function(){
+            $('#name').html(localStorage.getItem('player_name'));
+            $(".menu").click(function(){
+                $("#popup-nav").fadeToggle("slow");
+            });
+            playerProfile();
+        }
+    </script>
+    </head>
+    <body>
+      <img src="../../img/background.jpg" id="background" alt="background">
+      <header>
+        <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
+        <h2 id="name"></h2>
+        <div id="popup-nav">
+            <div id="popup-nav-content">
+            </div>
+        </div>
+      </header>
+      <div class="section">
+          <h2>Profile</h2>
+          <a href="personal-profile.html" class="submit view-all" ><p>View</p></a> 
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                    <p>Current Position</p>
+                    <h2 id="player_position">...</h2>
+                    <img id="player_image" style="float: right;width: 60px;position: absolute;top: 5px;right: 12px;" src="../../img/basic_player.jpg" />
+                <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+        
+      <div class="clear"></div>
+        
+      <div class="section">
+          <h2>Change Email</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="player-email-section">
+                    <p>Email Address</p>
+                    <input type="email" id="player-email" placeholder="Email Address">
+                </div>
+                <div id="player-email-section">
+                    <p>Confirm</p>
+                    <input type="email" id="player-confirm-email" placeholder="Email Address">
+                </div>
+                <br/>
+                <a href="" class="submit save-player-email" ><p>Save Email</p></a> 
+            </div>
+        </div>
+      </div>
+        
+      <div class="clear"></div>    
+        
+      <div class="section">
+          <h2>Change Password</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <div id="player-email-section">
+                    <p>Password</p>
+                    <input type="password" id="player-password" placeholder="Password">
+                </div>
+                <div id="player-email-section">
+                    <p>Confirm</p>
+                    <input type="password" id="player-confirm-password" placeholder="Password">
+                </div>
+                <br/>
+                <a href="#" class="submit save-player-password" ><p>Save Password</p></a>
+            </div>
+        </div>
+      </div>
+      <script type="text/javascript" src="../../js/management/profile.js"></script>
+      <script type="text/javascript" src="../../js/teamanage.js"></script>
+  </body>
+</html>

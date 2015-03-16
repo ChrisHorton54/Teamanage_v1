@@ -19,7 +19,7 @@ function returnProfileView(data){
 }
 
 $(document).ready(function(){
-    var clubID = localStorage.getItem("clubID");
+  var clubID = localStorage.getItem("clubID");
     
    $(".save-team-name").click(function(){
        var teamName = $("#team-name").val();
@@ -87,7 +87,63 @@ $(document).ready(function(){
                 alert("Sorry, the passwords provided do not match.");
             }
         }
-   }); 
+   });
+    
+    
+  $(".save-player-email").click(function(event){
+       var playerID = localStorage.getItem("main_playerID");
+      
+       event.preventDefault();
+       var email = $("#player-email").val();
+       var confirm_email = $("#player-confirm-email").val();
+        if(email == "" || confirm_email == ""){
+            alert("Please provide a new email address");
+        } else {
+            if(email == confirm_email){
+                if(emailChecker(email)){
+                    $.ajax({
+                        url:"http://teamanage.co.uk/scripts/management/profile/profile.php",
+                        type: "POST",
+                        data: {type: "change-email-player", playerID : playerID, email: email},
+                        success:function(data){  
+                            changeEmail(data);
+                        }
+                    }); 
+                } else {
+                    alert("You have provided an invalid email address.");
+                }
+            } else {
+                alert("Sorry, the email address's provided do not match.");
+            }
+        }
+   });
+    
+    $(".save-player-password").click(function(event){
+        var playerID = localStorage.getItem("main_playerID");
+       event.preventDefault();
+       var password = $("#player-password").val();
+       var confirm_password = $("#player-confirm-password").val();
+        if(password == "" || confirm_password == ""){
+            alert("Please enter a new password.");
+        } else {
+            if(password == confirm_password){
+                if(password.length < 6){
+                    alert("Please provide a password over 6 characters long.");
+                } else {
+                    $.ajax({
+                        url:"http://teamanage.co.uk/scripts/management/profile/profile.php",
+                        type: "POST",
+                        data: {type: "change-player-password", playerID : playerID, password: password},
+                        success:function(data){  
+                            changePassword(data);
+                        }
+                    }); 
+                }
+            } else {
+                alert("Sorry, the passwords provided do not match.");
+            }
+        }
+   });
 });
 
 function newName(data){
@@ -117,3 +173,23 @@ function emailChecker(email) {
   var pattern = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return pattern.test(email);
 }
+
+function playerProfile(){
+    var playerID = localStorage.getItem("main_playerID");
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/profile/profile.php",
+        type: "POST",
+        data: {type: "load-player-profile", playerID : playerID},
+        success:function(data){
+            returnPlayerProfileView(data);
+        }
+    });
+}
+
+function returnPlayerProfileView(data){
+    var info = JSON.parse(data);
+    $("#player_image").attr("src",info['image_src']);
+    $("#player_position").html(info['position']);
+    $("#player-email").val(info['email']);
+}
+
