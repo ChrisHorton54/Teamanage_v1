@@ -39,8 +39,7 @@ function saveFormationInfo(data){
     window.location = "formation-select.html";
 }
 
-function formationChange(){
-    var formation = $("#formationChange :selected").text();
+function formationChange(formation){
     
     if(formation == "4-4-2"){
         $(".player_1 .position").html("GK");
@@ -91,8 +90,6 @@ function formationChange(){
         $(".player_10 .position").html("ST");
         $(".player_11 .position").html("ST");
     }
-    
-    
 }
 
 function checkPlayerPositions(data){
@@ -108,7 +105,7 @@ function checkPlayerPositions(data){
         $('.player_' + j + ' .player_name option[value="' + info['players'][i]['playerID'] + '"]').attr("selected", "selected");
     }
     
-    formationChange();
+    formationChange($("#formationChange :selected").text());
 }
 
 function populateFormationPlayers(){
@@ -158,4 +155,63 @@ function populatePlayers(data){
             checkPlayerPositions(data);
         }
     });    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function populateFormationPlayersForPlayers(){
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/formations/formations.php",
+        type: "POST",
+        data: {type: "formation-pos", clubID: clubID},
+        success:function(data){
+            populatePlayersForPlayers(data);
+        }
+    });
+}
+
+function populatePlayersForPlayers(data){
+    var info = JSON.parse(data);
+    var players = "";
+    var stats = "";
+    
+    for(i = 1; i < 12; i++){
+        players = players + '<tr class="player_'+ i +'"><td width="20%" class="position">GK</td><td width="80%" class="player">' + info[i]['player_name'] + ' - ' + info[i]['position'] + '</td></tr>';
+    }
+    
+    $("#player_pos tbody").html(players);
+    
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/formations/formations.php",
+        type: "POST",
+        data: {type: "retrieve-players", clubID: clubID },
+        success:function(data){
+            checkPlayerPositionsForPlayer(data);
+        }
+    });    
+}
+
+function checkPlayerPositionsForPlayer(data){
+    
+    var info = JSON.parse(data);
+    
+    localStorage.setItem("formation_selected",info['formation'] );
+    
+    $('#formationChange h2').html(info['formation']);
+    
+    formationChange($("#formationChange h2").html());
 }

@@ -252,14 +252,14 @@ function loginPlayer(data){
             localStorage.setItem("clubID", information['clubID']);
             localStorage.setItem("account_type", "player");
             localStorage.setItem("player_name", information['player_name']);
-            localStorage.setItem("playerID", information['playerID']);
+            localStorage.setItem("main_playerID", information['playerID']);
         } else {
             localStorage.clear();
             
             localStorage.setItem("clubID", information['clubID']);
             localStorage.setItem("account_type", "fan");
             localStorage.setItem("player_name", information['player_name']);
-            localStorage.setItem("playerID", information['playerID']);
+            localStorage.setItem("main_playerID", information['playerID']);
         }
         
         window.location = "player/index.html";

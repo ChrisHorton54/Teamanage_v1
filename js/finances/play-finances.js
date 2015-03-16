@@ -73,7 +73,7 @@ function stripeResponseHandlerFines(status, response) {
     var payment = $("#fines-payment-amount").html();
     var email = "Payment from email: " + $("#fin-player-email").html(); + " for Fines";
     var stripe_sk = localStorage.getItem("secret_key");
-    var playerID = localStorage.getItem('playerID');
+    var playerID = localStorage.getItem('main_playerID');
     var payment_dec = $(".fines-amount").html();
 
     $.ajax({
@@ -105,7 +105,7 @@ function stripeResponseHandlerSubs(status, response) {
     var payment = $("#subs-payment-amount").html();
     var email = "Payment from email: " + $("#fin-player-email").html(); + " for Subs";
     var stripe_sk = "sk_test_dxCYhaHeac7NhTMVAK4RvIPd";
-    var playerID = localStorage.getItem('playerID');
+    var playerID = localStorage.getItem('main_playerID');
     var payment_dec = $(".subs-amount").html();
 
     $.ajax({
@@ -132,7 +132,7 @@ function checkPayment(data){
 }
 
 function retrievePlayerFin(){
-    var playerID = localStorage.getItem("playerID");
+    var playerID = localStorage.getItem("main_playerID");
     $.ajax({
         url:"http://teamanage.co.uk/scripts/player/finances.php",
         type: "POST",

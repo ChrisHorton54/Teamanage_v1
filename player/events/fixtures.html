@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TeaManage</title>
+    <title>Teamanage - Events</title>
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../css/glDatePicker.flatwhite.css" /> 
     <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
-      <script type="text/javascript" src="../../js/glDatePicker.min.js"></script>
+    <script type="text/javascript" src="../../js/glDatePicker.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         // Wait for PhoneGap to load     
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -21,12 +21,7 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-            
-            var d = new Date();
-            var today_month = d.getMonth() + 1;
-            populateCalender(d.getFullYear() + '-' + today_month + '-' + d.getDate());
-            
-            $('#mydate').glDatePicker(
+            $('#newFixtureDate').glDatePicker(
             {
                 showAlways: true,
                 cssName: 'flatwhite',
@@ -39,7 +34,8 @@
                     var month_num = date.getMonth() + 1;
                     var date_num = date.getFullYear() + '-' + month_num + '-' + date.getDate();
                     target.val(date_txt);
-                    populateCalender(date_num);
+                    $('#date_selected').html(date_num);
+                    findAllEvents('all-fixtures',date_num);
                 }
             });
         }
@@ -49,37 +45,41 @@
       <img src="../../img/background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
-        <h2 id="name">Player</h2>
-        <a href="recent-lists.html"><img class="add-player" src="../../img/list_white.png" alt="Lists" title="Lists" /></a>
+        <h2 id="name"></h2>
         <div id="popup-nav">
             <div id="popup-nav-content">
             </div>
         </div>
       </header>
+      
       <div class="section">
-          <h2>Recent Payments</h2>
+          <h2>Fixtures</h2>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <input type="text" id="mydate" gldp-id="mydate" placeholder="Date"/>
-                <div class="width-50 calender-payments">
-                    <p>Subs Payment</p>
-                    <h3>&pound;<span id="payment_for_subs">0.00</span></h3>
+                <div class="fixture-event-info">
+                    <div id="left-content">
+                        <input type="text" id="newFixtureDate" gldp-id="mydate" value="Please select a date"/>
+                        <h3 id="event-name">N/A</h3>
+                    </div>
+                    <div id="right-content">
+                        <h3 id="event-time">N/A</h3>
+                    </div>
                 </div>
-                <div class="width-50 calender-payments">
-                    <p>Fines Payment</p>
-                    <h3>&pound;<span id="payment_for_fines">0.00</span></h3>
-                </div>
-                <div class="clear"></div>
+                <p id="date_selected" style="display:none;"></p>
+                <div class="clear"></div><br/>
                 <div gldp-el="mydate"
                      style="width:91%; height:300px;">
                 </div>
+                <br/>
+                <a href="#" class="submit fixture-submit disabled"><p>View Fixture</p></a>
             </div>
         </div>
       </div>
-      <div class="payment-mask"></div>
+      <div class="clear"></div>
+      
+      <script type="text/javascript" src="../../js/management/topEvents.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
-      <script type="text/javascript" src="../../js/finances/listingPayments.js"></script>
       <script type="text/javascript" src="../../phonegap.js"></script>
       <script type="text/javascript" src="../../cordova.js"></script>
   </body>

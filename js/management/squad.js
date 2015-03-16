@@ -143,7 +143,6 @@ function playerAmount(){
 
 function returnPlayerAmount(data){
    var info = JSON.parse(data);
-    console.log(info);
     
     $("#formation_selected").html(info['formation']);
     $("#player_amount").html(info['count']);
@@ -166,7 +165,6 @@ function captureSuccess(mediaFiles) {
 }
 
 function uploadFile(mediaFile) {
-    console.log(mediaFile.name);
     var clubID = localStorage.getItem("clubID");
     
     path = mediaFile.fullPath;
@@ -192,7 +190,6 @@ function uploadFile(mediaFile) {
         },
         function(error) {
             alert("Error");
-            console.log(error);
         },
         options
         );  
@@ -239,7 +236,6 @@ function uploadPhotoLib(imageURI) {
         },
         function(error) {
             alert("Error");
-            console.log(error);
         },
         options
         );
@@ -310,4 +306,27 @@ function populateThePlayer(data){
         document.getElementById("position").selectedIndex = "3";
     }
     
+}
+
+function specificPlayerPopulateForPlayer(){
+    var clubID = localStorage.getItem("clubID");
+    var playerID = localStorage.getItem("playerID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/player-info.php",
+        type: "POST",
+        data: {clubID : clubID, playerID: playerID},
+        success:function(data){
+            populateThePlayerForPlayer(data);
+        }
+    });
+}
+
+function populateThePlayerForPlayer(data){
+    var info = JSON.parse(data);
+    $("#player-name-section #player-name").html(info['player_name']);
+    $("#player-email-section #player-email").html(info['email_address']);
+    $("#player-description-section #player-description").html(info['description']);
+    $("#player_image-src").attr("src",info['image_src']);
+    $("#player-position-section #player-position").html(info['position']);    
 }

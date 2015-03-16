@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TeaManage</title>
+    <title>Teamanage - Squads</title>
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
@@ -15,40 +15,64 @@
         }
         
         window.onload = function(){
-            $('#name').html(localStorage.getItem('player_name'));
+            $('#fan_name').html(localStorage.getItem('fan_name'));
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
-            getList();
+            
+            populateFormationPlayersForPlayers();
         }
     </script>
   </head>
   <body>
-      <img src="../../img/background.jpg" id="background" alt="background">
+      <img src="../../img/fan_background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
-        <h2 id="name">Player</h2>
-        <a href="recent-calender.html"><img class="add-player" src="../../img/calender_white.png" alt="Calender" title="Calender" /></a>
+        <h2 id="fan_name"></h2>
         <div id="popup-nav">
             <div id="popup-nav-content">
             </div>
         </div>
       </header>
+      
       <div class="section">
-          <h2>Recent Payments</h2>
+          <h2>Formation</h2><a href="formation.html" class="submit view-all" ><p>View</p></a>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <ul class="recent-payment-list">
-                    
-                </ul>
+              <p>Current Formation</p>
+                <div id="formationChange">
+                    <h2>...</h2>
+                </div>
                 <div class="clear"></div>
             </div>
         </div>
       </div>
-      <div class="payment-mask"></div>
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Positions</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <table id="player_pos" width="100%">
+                    <thead>
+                        <tr>
+                            <td width="20%">Position</td>
+                            <td width="80%">Player</td>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+      
+      <script type="text/javascript" src="../../js/management/formation-select.js"></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
-      <script type="text/javascript" src="../../js/finances/listingPayments.js"></script>
       <script type="text/javascript" src="../../phonegap.js"></script>
       <script type="text/javascript" src="../../cordova.js"></script>
   </body>
