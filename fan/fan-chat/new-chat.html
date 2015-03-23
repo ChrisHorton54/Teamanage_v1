@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teamanage - Squads</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/style.css" rel="stylesheet">
+      <link href="../../css/chart.css" rel="stylesheet">
+    <script type="text/javascript" src="../../cordova.js"></script>
+      <script type="text/javascript" src="../../js/Chart.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // Wait for PhoneGap to load     
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // PhoneGap is ready
+        function onDeviceReady() {
+        }
+        
+        window.onload = function(){
+            $(".menu").click(function(){
+                $("#popup-nav").fadeToggle("slow");
+            });
+            retrieveAllStats();
+        }
+        
+        $(document).ready(function() {
+            $(".chat-message textarea").val('');
+            $(".chat-message textarea").keypress(function() {
+                var textLength = $(".chat-message textarea").val().length;
+                if (textLength % 50 == 0) {
+                    var height = textLength/50;
+                    $(".chat-message textarea").css('height', 20+(height*20));
+                }
+            });
+        });
+
+    </script>
+    </head>
+    <body>
+      <img src="../../img/fan_background.jpg" id="background" alt="background">
+      <header>
+        <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
+        <h2 id="fan_name">New Chat</h2>
+          <img class="add-player" onclick="editModeResult()" src="../../img/edit.png" alt="Save Chat" title="Save Chat">
+        <div id="popup-nav">
+            <div id="popup-nav-content">
+            </div>
+        </div>
+      </header>
+        <div class="chat-section">
+            <div class="chat-message fan">
+                <textarea placeholder="Add Here..."></textarea>
+            </div>
+        </div>
+        
+        <script type="text/javascript" src="../../js/management/statistics.js"></script></script>
+      <script type="text/javascript" src="../../js/teamanage.js"></script>
+  </body>
+</html>
