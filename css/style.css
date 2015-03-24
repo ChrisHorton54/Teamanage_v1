@@ -1012,6 +1012,10 @@ select.player_name{
     background: #9CB500;
 }
 
+.chat-section .chat-message.error{
+    background: #C35454;
+}
+
 .chat-section .comment-found p{
     background: #E83838;
     padding: 7px 10px;
@@ -1020,6 +1024,15 @@ select.player_name{
     border-radius: 6px;
     margin: 0;
     box-shadow: 0px 2px #C80000;
+}
+.chat-section .comment-added p{
+    background: #38E884;
+    padding: 7px 10px;
+    float: right;
+    font-size: 14px;
+    border-radius: 6px;
+    margin: 0;
+    box-shadow: 0px 2px #00A836;
 }
 
 .chat-section .chat-message textarea{

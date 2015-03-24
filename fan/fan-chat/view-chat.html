@@ -20,6 +20,9 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrieveSpecificChats();
+            resetNotification();
         }
     </script>
     </head>
@@ -27,14 +30,19 @@
       <img src="../../img/fan_background.jpg" id="background" alt="background">
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
-        <h2 id="fan_name">New Chat</h2>
-          <img class="add-player" onclick="saveChat()" src="../../img/save.png" alt="Save Chat" title="Save Chat">
+        <h2 id="fan_name">View Chat</h2>
+        <img class="add-player" src="../../img/reply.png" alt="Reply to Chat" title="Reply to Chat" onclick="saveReply('fan')"/>
         <div id="popup-nav">
             <div id="popup-nav-content">
             </div>
         </div>
-      </header>
-        <div class="chat-section">
+      </header>        
+        <div class="chat-section all-messages">
+        </div>
+                
+        <div class="clear"></div>
+        <br/>
+        <div class="chat-section add-message">
             <div class="chat-message fan">
                 <textarea placeholder="Add Here..."></textarea>
             </div>
