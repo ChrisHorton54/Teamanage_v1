@@ -108,7 +108,7 @@ function uploadFile(mediaFile) {
     ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_image_gallery.php?id=" + clubID,
         function(result) {
             alert("Success"); 
-            $("#player_image-src").attr("src","http://teamanage.co.uk/app/gallery/club/" + clubID + "/" + name);
+            $("#gallery_img_src").attr("src","http://teamanage.co.uk/app/gallery/club/" + clubID + "/" + name);
         },
         function(error) {
             alert("Error");
