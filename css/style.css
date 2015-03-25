@@ -1072,3 +1072,14 @@ select.player_name{
 .chat-section .chat-message textarea:-ms-input-placeholder {  
    color: #DDDDDD;  
 }
+
+.section .section-body .section-content .gallery-fan-club h2{
+      float: right;
+      position: relative;
+      top: 38px;
+      left: 0px;
+}
+
+.section .section-body .section-content .gallery-fan-club h2 img{
+      margin-left: 15px;
+}
