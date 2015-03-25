@@ -1073,13 +1073,14 @@ select.player_name{
    color: #DDDDDD;  
 }
 
-.section .section-body .section-content .gallery-fan-club h2{
+.section .section-body .section-content .gallery-fan-club h2, .section .section-body .section-content .gallery-fan-club h3{
       float: right;
       position: relative;
       top: 38px;
       left: 0px;
+      margin: 0;
 }
 
-.section .section-body .section-content .gallery-fan-club h2 img{
+.section .section-body .section-content .gallery-fan-club h2 img, .section .section-body .section-content .gallery-fan-club h3 img{
       margin-left: 15px;
 }

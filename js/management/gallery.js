@@ -57,16 +57,16 @@ $(document).ready(function(){
             console.log(errors);
         } else {
             $.ajax({
-                url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
-                type: "POST",
-                data: {type: "add-club-gallery", clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
-                success:function(data){
-                    alert("Your Gallery has now been added.");
-                    window.location = "club-gallery.html";
+                        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+                        type: "POST",
+                        data: {type: "add-club-gallery", clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
+                        success:function(data){
+                            alert("Your Gallery has now been added.");
+                            window.location = "club-gallery.html";
+                        }
+                    });
                 }
             });
-        }
-    });
 });
 
 function getPhoto(source) 
@@ -156,4 +156,28 @@ function uploadFile(mediaFile) {
 
 function onFail(message) {
     alert('Failed because: ' + message);
+}
+
+function retrieveClubGalleries(){
+    var clubID = localStorage.getItem("clubID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+        type: "POST",
+        data: {type: "all-club-galleries", clubID: clubID},
+        success:function(data){
+            populateClubGalleries(data);
+        }
+    });
+}
+
+function populateClubGalleries(data){
+    var info = JSON.parse(data);
+    var gallery_list = "";
+    
+    for(var i = 0; i < info.length; i++){
+        gallery_list += '<li onclick="specificGallery(' + info[i]['club_galleryID'] + ')"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"></div></li>';
+    }
+    
+    $(".gallery-fan-club").html(gallery_list);
 }
