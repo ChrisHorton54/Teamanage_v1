@@ -19,6 +19,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrievePlayerHome();
         }
     </script>
   </head>
@@ -63,6 +65,62 @@
             </div>
         </div>
       </header>
+      <div class="section">
+          <h2>Fixtures</h2><a href="events/fixtures.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <ul class="recent-payment-list" id="fixtures-population"></ul>
+            </div>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Results</h2><a href="events/all-results.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+              <ul class="recent-payment-list" id="results-population"></ul>
+            </div>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Players</h2><a href="squads/all-players.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+              <ul class="player_listing"></ul>
+            </div>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Finances</h2><a href="finances/finance.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <div class="column col-2">
+                    <p>Fines Owed</p>
+                    <h3 id="fines-owed">...</h3>
+                </div>
+                <div class="column col-2">
+                    <p>Subs Owed</p>
+                    <h3 id="subs-owed">...</h3>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+      </div>
+      <br/>
+      
+      <script type="text/javascript" src="../js/management/home.js"></script>
       <script type="text/javascript" src="../js/teamanage.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="cordova.js"></script>

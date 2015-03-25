@@ -19,6 +19,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrieveClubHome();
         }
     </script>
   </head>
@@ -60,7 +62,7 @@
                         <img src="../img/fantalk-nav.jpg" title="Fan Talk" alt="Fan Talk" />
                         <h3>Fan Talk</h3>
                     </div></a>
-                <div class="nav-block third" onclick="logout('../');">
+                <div class="nav-block third" onclick="logout('');">
                         <img src="../img/log-out.jpg" title="Log Out" alt="Log Out" />
                         <h3>Log Out</h3>
                     </div>
@@ -72,11 +74,11 @@
         </div>
       </header>
       <div class="section">
-          <h2>Next Fixture</h2>
+          <h2>Fixtures</h2><a href="events/fixtures.html" class="submit view-all"><p>View</p></a>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-                <ul class="next-fixture"></ul>
+                <ul class="recent-payment-list" id="fixtures-population"></ul>
             </div>
         </div>
       </div>
@@ -84,11 +86,11 @@
       <div class="clear"></div>
       
       <div class="section">
-          <h2>Latest Result</h2>
+          <h2>Results</h2><a href="events/all-results.html" class="submit view-all"><p>View</p></a>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-              <ul class="latest-result"></ul>
+              <ul class="recent-payment-list" id="results-population"></ul>
             </div>
         </div>
       </div>
@@ -96,11 +98,11 @@
       <div class="clear"></div>
       
       <div class="section">
-          <h2>Top Player</h2>
+          <h2>Players</h2><a href="squads/all-players.html" class="submit view-all"><p>View</p></a>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-              <ul class="top-player"></ul>
+              <ul class="player_listing"></ul>
             </div>
         </div>
       </div>
@@ -108,18 +110,25 @@
       <div class="clear"></div>
       
       <div class="section">
-          <h2>Fines</h2>
+          <h2>Finances</h2><a href="finances/finances.html" class="submit view-all"><p>View</p></a>
           <div class="clear"></div>
         <div class="section-body">
             <div class="section-content">
-              <p>Club Finances</p>
-                <ul>
-                    <li><p id="player_amount" class="outstanding-fines"></p><img src="../../img/arrow-list.png" /><div class="clear"></div></li>
-                </ul>
+                <div class="column col-2">
+                    <p>Fines Owed</p>
+                    <h3 id="fines-owed">...</h3>
+                </div>
+                <div class="column col-2">
+                    <p>Subs Owed</p>
+                    <h3 id="subs-owed">...</h3>
+                </div>
+                <div class="clear"></div>
             </div>
         </div>
       </div>
+      <br/>
       
+      <script type="text/javascript" src="../js/management/home.js"></script>
       <script type="text/javascript" src="../js/teamanage.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="cordova.js"></script>

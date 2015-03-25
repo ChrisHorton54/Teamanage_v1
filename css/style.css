@@ -184,6 +184,13 @@ header h2{
     width: 96%;
 }
 
+.section .section-body .section-content #player-email-section select{
+    height: 40px;
+    width: 100%;
+    border: 5px solid #FFFFFF;
+    background: #FFFFFF;
+}
+
 .section .section-body .section-content #player-name-section p, .section .section-body .section-content #player-email-section p, .section .section-body .section-content #player-description-section p, .section .section-body .section-content #player-position-section p{
     margin-bottom: 10px;
 }
@@ -961,6 +968,12 @@ select.player_name{
     background: #FA4C4C;
     float: right;
 }
+
+.column.col-2{
+    width: 50%;
+    float: left;
+}
+
 
 .column.col-3{
     width: 33.3%;

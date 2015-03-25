@@ -19,6 +19,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrieveFanHome();
         }
     </script>
   </head>
@@ -44,16 +46,56 @@
                     </div></a>
                 <div class="clear"></div>
                 <a href="fan-chat/chat.html"><div class="nav-block first">
-                        <img src="../img/fantalk-nav.jpg" title="Stats" alt="Stats" />
+                        <img src="../img/fantalk-nav.jpg" title="Fan Chat" alt="Fan Chat" />
                         <h3>Fan Chat</h3>
                     </div></a>
-                <div class="nav-block second" onclick="logout('');">
+                <a href="profile/profile.html"><div class="nav-block second">
+                        <img src="../img/profile-nav.jpg" title="Profile" alt="Profile" />
+                        <h3>Profile</h3>
+                    </div></a>
+                <div class="nav-block third" onclick="logout('');">
                         <img src="../img/log-out.jpg" title="Log Out" alt="Log Out" />
                         <h3>Log Out</h3>
                     </div>
             </div>
         </div>
       </header>
+      <div class="section">
+          <h2>Fixtures</h2><a href="events/fixtures.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <ul class="recent-payment-list" id="fixtures-population"></ul>
+            </div>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Results</h2><a href="events/all-results.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+              <ul class="recent-payment-list" id="results-population"></ul>
+            </div>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+      
+      <div class="section">
+          <h2>Players</h2><a href="squads/all-players.html" class="submit view-all"><p>View</p></a>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+              <ul class="player_listing"></ul>
+            </div>
+        </div>
+      </div>
+      <br/>
+      
+      <script type="text/javascript" src="../js/management/home.js"></script>
       <script type="text/javascript" src="../js/teamanage.js"></script>
       <script type="text/javascript" src="phonegap.js"></script>
       <script type="text/javascript" src="cordova.js"></script>
