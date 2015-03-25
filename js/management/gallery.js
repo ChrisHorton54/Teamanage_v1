@@ -30,6 +30,43 @@ $(document).ready(function(){
             captureImage();
         }, 700);
     });
+    
+    $(".add-gallery").click(function(){
+        var gallery_name = $("#gallery_name").val();
+        var image_name = $("#image_name").val();
+        var image_src = $("#gallery_img_src").attr("src");
+        var clubID = localStorage.getItem("clubID");
+        var errors = [];
+        
+        if(gallery_name == ""){
+            alert("Please enter a Gallery Name.");
+            errors.push(gallery_name);
+        }
+        
+        if(image_name == ""){
+            alert("Please enter an Image name.");
+            errors.push(image_name);
+        }
+        
+        if(image_src == "../../img/basic_player.jpg"){
+            alert("Please select an Image.");
+            errors.push(image_src);
+        }
+        
+        if(errors.length > 0){
+            console.log(errors);
+        } else {
+            $.ajax({
+                url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+                type: "POST",
+                data: {type: "add-club-gallery", clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
+                success:function(data){
+                    alert("Your Gallery has now been added.");
+                    window.location = "club-gallery.html";
+                }
+            });
+        }
+    });
 });
 
 function getPhoto(source) 
