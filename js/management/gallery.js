@@ -181,3 +181,28 @@ function populateClubGalleries(data){
     
     $(".gallery-fan-club").html(gallery_list);
 }
+
+function specificGallery(galleryID){
+    localStorage.setItem("galleryID",galleryID);
+    
+    window.location = "specific-gallery.html";
+}
+
+function retrieveSpecificGallery(){
+    var galleryID = localStorage.getItem("galleryID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+        type: "POST",
+        data: {type: "retrieve-specific", galleryID: galleryID},
+        success:function(data){
+            populateSpecificGallery(data);
+        }
+    });
+}
+
+function populateSpecificGallery(data){
+    var info = JSON.parse(data);
+    
+    console.log(info);
+}
