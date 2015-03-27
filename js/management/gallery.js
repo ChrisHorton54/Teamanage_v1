@@ -121,8 +121,8 @@ $(document).ready(function(){
         }
         
         if(image_src == "../../img/basic_player.jpg"){
-            alert("Please select an Image.");
-            errors.push(image_src);
+            //alert("Please select an Image.");
+            //errors.push(image_src);
         }
         
         if(errors.length > 0){
@@ -134,6 +134,7 @@ $(document).ready(function(){
                     data: {type: "add-fan-gallery", fanID: fanID, clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
                     success:function(data){
                         alert("Your Gallery has now been added.");
+                        console.log(data);
                         window.location = "fan-gallery.html";
                     }
                 });
@@ -435,7 +436,7 @@ function uploadPhotoLib_fan(imageURI) {
     ft.upload( imageURI, "http://teamanage.co.uk/scripts/management/upload_image_gallery_fan.php?id=" + fanID,
         function(result) {
             alert("Success");
-            $("#gallery_img_src").attr("src","http://teamanage.co.uk/app/gallery/club/" + fanID + "/" + options.fileName + ".jpg");
+            $("#gallery_img_src").attr("src","http://teamanage.co.uk/app/gallery/fan/" + fanID + "/" + options.fileName + ".jpg");
         },
         function(error) {
             alert("Error");
@@ -478,7 +479,7 @@ function uploadFile_fan(mediaFile) {
     ft.upload( path, "http://teamanage.co.uk/scripts/management/upload_image_gallery_fan.php?id=" + fanID,
         function(result) {
             alert("Success"); 
-            $("#gallery_img_src").attr("src","http://teamanage.co.uk/app/gallery/club/" + fanID + "/" + name);
+            $("#gallery_img_src").attr("src","http://teamanage.co.uk/app/gallery/fan/" + fanID + "/" + name);
         },
         function(error) {
             alert("Error");
