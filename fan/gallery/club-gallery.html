@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teamanage - Squads</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link href="../../css/style.css" rel="stylesheet">
+      <link href="../../css/chart.css" rel="stylesheet">
+    <script type="text/javascript" src="../../cordova.js"></script>
+      <script type="text/javascript" src="../../js/Chart.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        // Wait for PhoneGap to load     
+        document.addEventListener("deviceready", onDeviceReady, false);
+        // PhoneGap is ready
+        function onDeviceReady() {
+        }
+        
+        window.onload = function(){
+            $('#fan_name').html(localStorage.getItem('fan_name'));
+            $(".menu").click(function(){
+                $("#popup-nav").fadeToggle("slow");
+            });
+            
+            retrieveClubGalleries();
+        }
+    </script>
+    </head>
+    <body>
+      <img src="../../img/fan_background.jpg" id="background" alt="background">
+      <header>
+        <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
+        <h2 id="fan_name"></h2>
+        <div id="popup-nav">
+            <div id="popup-nav-content">
+            </div>
+        </div>
+      </header>
+        <div class="section">
+          <h2>Gallery</h2>
+          <div class="clear"></div>
+        <div class="section-body">
+            <div class="section-content">
+                <ul class="gallery-fan-club">
+                </ul>
+            </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+        
+        <script type="text/javascript" src="../../js/management/gallery.js"></script></script>
+      <script type="text/javascript" src="../../js/teamanage.js"></script>
+  </body>
+</html>
