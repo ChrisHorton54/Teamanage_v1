@@ -984,6 +984,7 @@ select.player_name{
     width: 90%;
     margin: 0 auto;
     display: block;
+    margin-bottom: 10px;
 }
 
 .column h3, .column p{
