@@ -1,3 +1,17 @@
+$(document).ready(function(){
+    $(".close-shadowbox").click(function(){
+        $(".shadowbox").fadeOut("slow");
+
+        setTimeout(function(){
+            $(".background-mask").removeClass("mask-active");
+        }, 200);
+
+        setTimeout(function(){
+            $(".background-mask").css("display","none");
+        }, 1000);
+    });
+});
+
 function retrieveClubHome(){
     var clubID = localStorage.getItem("clubID");
     
@@ -78,4 +92,17 @@ function populateClubHome(data, type){
         $('#subs-owed').html("&pound" + info['finances']['overall_subs']);
         $("#fines-owed").html("&pound" + info['finances']['overall_fines']);
     }
+}
+
+function showHelpVideo(){
+    $("#popup-nav").fadeOut();
+    $(".background-mask").css("display","block");
+    
+    setTimeout(function(){
+        $(".background-mask").addClass("mask-active");
+    }, 200);
+    
+    setTimeout(function(){
+        $(".shadowbox").fadeIn("slow");
+    }, 500);
 }
