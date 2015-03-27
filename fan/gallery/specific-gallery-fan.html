@@ -21,6 +21,8 @@
             $(".menu").click(function(){
                 $("#popup-nav").fadeToggle("slow");
             });
+            
+            retrieveSpecificGalleryFan();
         }
     </script>
     </head>
@@ -29,36 +31,35 @@
       <header>
         <img class="menu" src="../../img/menu.png" alt="Menu" title="Menu" />
         <h2 id="fan_name"></h2>
+          <a href="add-gallery-image.html"><img class="add-player" src="../../img/add.png" alt="New Gallery Image" title="New Gallery Image" /></a>
         <div id="popup-nav">
             <div id="popup-nav-content">
             </div>
         </div>
       </header>
         <div class="section">
-          <h2>New Image</h2>
+          <h2 id="gallery-name">...</h2>
           <div class="clear"></div>
         <div class="section-body">
-            <div class="section-content">
-                <div id="player-email-section">
-                    <input type="text" id="image_name" placeholder="Image Name" />
-                    </div>
-                <h3>Your Image</h3>
-                <img id="gallery_img_src" style="width:60%; float:right;"src="../../img/basic_player.jpg" />
-                <div class="clear"></div>
-                <br/>
-                    <a href="#" class="submit add-gallery-image-fan"><p>Add Image</p></a>
+            <div class="section-content gallery-content">
+                
             </div>
         </div>
       </div>
       <div class="clear"></div>
-        <div class="select-photo-type">
-          <div class="photo-lib-fan">
-            <h2>Photo Libary</h2>
-          </div>
-          <div class="photo-camera-fan">
-            <h2>Device Camera</h2>
+      <div class="background-mask"></div>
+      <div class="shadowbox">
+          <div class="image-content">
+            <div class="heading-content">
+                <h2 class="main-image-text">Test</h2>
+                <img class="close-shadowbox" src="../../img/index/cross.png" />
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <img class="main-image" src="../../img/basic_player.jpg" alt="" title=""/>
           </div>
       </div>
+        
         <script type="text/javascript" src="../../js/management/gallery.js"></script></script>
       <script type="text/javascript" src="../../js/teamanage.js"></script>
   </body>

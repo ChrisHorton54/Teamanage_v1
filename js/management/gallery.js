@@ -134,7 +134,6 @@ $(document).ready(function(){
                     data: {type: "add-fan-gallery", fanID: fanID, clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
                     success:function(data){
                         alert("Your Gallery has now been added.");
-                        console.log(data);
                         window.location = "fan-gallery.html";
                     }
                 });
@@ -169,6 +168,39 @@ $(document).ready(function(){
                     success:function(data){
                         alert("Your Gallery has now been added.");
                         window.location = "club-gallery.html";
+                    }
+                });
+            }
+    });
+    
+    $(".add-gallery-image-fan").click(function(){
+        var galleryID = localStorage.getItem("galleryID");
+        var image_name = $("#image_name").val();
+        var image_src = $("#gallery_img_src").attr("src");
+        var errors = [];
+        
+        if(image_name == ""){
+            alert("Please enter an Image Name.");
+            errors.push(image_name);
+        }
+        
+        if(image_src == "../../img/basic_player.jpg"){
+            alert("Please select an Image.");
+            errors.push(image_src);
+        }
+        
+        if(errors.length > 0){
+            
+            console.log(errors);
+            
+        } else {
+            $.ajax({
+                        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+                    type: "POST",
+                    data: {type: "add-gallery-image-fan", galleryID: galleryID, image_name: image_name, image_src: image_src},
+                    success:function(data){
+                        alert("Your Gallery has now been added.");
+                        window.location = "fan-gallery.html";
                     }
                 });
             }
@@ -312,7 +344,7 @@ function populateFanGalleries(data){
         gallery_list = '<p>There are no galleries at the moment.</p><div class="clear"></div>';
     } else {
         for(var i = 0; i < info.length; i++){
-            gallery_list += '<li onclick="specificGallery(' + info[i]['fan_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li>';
+            gallery_list += '<li onclick="specificGalleryFan(' + info[i]['fan_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li>';
         }
     }
     $(".gallery-fan-club").html(gallery_list);
@@ -323,6 +355,13 @@ function specificGallery(galleryID, galleryName){
     localStorage.setItem("gallery-name",galleryName.querySelector("#specific-gallery-name").innerHTML);
     
     window.location = "specific-gallery.html";
+}
+
+function specificGalleryFan(galleryID, galleryName){
+    localStorage.setItem("galleryID",galleryID);
+    localStorage.setItem("gallery-name",galleryName.querySelector("#specific-gallery-name").innerHTML);
+    
+    window.location = "specific-gallery-fan.html";
 }
 
 function retrieveSpecificGallery(){
@@ -339,6 +378,35 @@ function retrieveSpecificGallery(){
 }
 
 function populateSpecificGallery(data){
+    var info = JSON.parse(data);
+    var galleryList = "";
+
+    $("#gallery-name").html(localStorage.getItem("gallery-name"));
+    
+    for(var i = 0; i < info.length; i++){
+        galleryList += '<div class="column col-3"><img onclick="changeShadowbox(this)" class="gallery-thumb" src="' + info[i]['image_src'] + '" alt="' + info[i]['image_name'] + '" title="' + info[i]['image_name'] + '"/></div>';
+    }
+    
+    galleryList += '<div class="clear"></div>';
+    
+    $(".gallery-content").html(galleryList);
+    
+}
+
+function retrieveSpecificGalleryFan(){
+    var galleryID = localStorage.getItem("galleryID");
+    
+    $.ajax({
+        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+        type: "POST",
+        data: {type: "retrieve-specific-fan", galleryID: galleryID},
+        success:function(data){
+            populateSpecificGalleryFan(data);
+        }
+    });
+}
+
+function populateSpecificGalleryFan(data){
     var info = JSON.parse(data);
     var galleryList = "";
 
