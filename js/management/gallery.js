@@ -81,7 +81,36 @@ $(document).ready(function(){
         });
     
     $(".add-gallery-image").click(function(){
-        alert("Upload Image");
+        var galleryID = localStorage.getItem("galleryID");
+        var image_name = $("#image_name").val();
+        var image_src = $("#gallery_img_src").attr("src");
+        var errors = [];
+        
+        if(image_name == ""){
+            alert("Please enter an Image Name.");
+            errors.push(image_name);
+        }
+        
+        if(image_src == "../../img/basic_player.jpg"){
+            alert("Please select an Image.");
+            errors.push(image_src);
+        }
+        
+        if(errors.length > 0){
+            
+            console.log(errors);
+            
+        } else {
+            $.ajax({
+                        url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
+                    type: "POST",
+                    data: {type: "add-gallery-image", galleryID: galleryID, image_name: image_name, image_src: image_src},
+                    success:function(data){
+                        alert("Your Gallery has now been added.");
+                        window.location = "club-gallery.html";
+                    }
+                });
+            }
     });
     
 });
