@@ -261,19 +261,19 @@ header h2{
     opacity: 1;
 }
 
-.select-photo-type .photo-lib, .select-photo-type .photo-camera{
+.select-photo-type .photo-lib, .select-photo-type .photo-lib-fan, .select-photo-type .photo-camera, .select-photo-type .photo-camera-fan{
     padding: 5px 0px;
 }
 
-.select-photo-type .photo-lib{
+.select-photo-type .photo-lib, .select-photo-type .photo-lib-fan{
     background: #0152f5;
 }
 
-.select-photo-type .photo-camera{
+.select-photo-type .photo-camera, .select-photo-type .photo-camera-fan{
     background: #92b6ff;
 }
 
-.select-photo-type .photo-lib h2, .select-photo-type .photo-camera h2{
+.select-photo-type .photo-lib h2, .select-photo-type .photo-lib-fan h2, .select-photo-type .photo-camera h2, .select-photo-type .photo-camera-fan h2{
     text-decoration: none;
     color: #FFFFFF;
     text-align: center;
