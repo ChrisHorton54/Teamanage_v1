@@ -70,15 +70,20 @@ $(document).ready(function(){
         } else {
             $.ajax({
                         url:"http://teamanage.co.uk/scripts/management/gallery/gallery.php",
-                        type: "POST",
-                        data: {type: "add-club-gallery", clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
-                        success:function(data){
-                            alert("Your Gallery has now been added.");
-                            window.location = "club-gallery.html";
-                        }
-                    });
-                }
-            });
+                    type: "POST",
+                    data: {type: "add-club-gallery", clubID: clubID, gallery_name: gallery_name, image_name: image_name, image_src: image_src},
+                    success:function(data){
+                        alert("Your Gallery has now been added.");
+                        window.location = "club-gallery.html";
+                    }
+                });
+            }
+        });
+    
+    $(".add-gallery-image").click(function(){
+        alert("Upload Image");
+    });
+    
 });
 
 function getPhoto(source) 
