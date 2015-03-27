@@ -980,6 +980,12 @@ select.player_name{
     float: left;
 }
 
+.column.col-3 .gallery-thumb{
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+}
+
 .column h3, .column p{
     text-align: center;
 }
@@ -1085,4 +1091,53 @@ select.player_name{
       margin-left: 15px;
 }
 
-/* Chris Test */
+.shadowbox{
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  width: 100%;
+  display:none;
+  z-index: 2;
+}
+
+.shadowbox .image-content{
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    width: 90%;
+    height: 50%;
+}
+
+.shadowbox .image-content .heading-content{
+  padding: 10px;
+  float: left;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: #2a415c;
+}
+
+.shadowbox .image-content .heading-content .main-image-text{
+    float: left;
+    width: 80%;
+    margin: 0;
+    color: #e2f2ff
+}
+
+.shadowbox .image-content .heading-content .close-shadowbox{
+    float: right;
+}
+
+.shadowbox .image-content .main-image{
+    width:100%;
+}
+
+#specific-gallery-name{
+    display:none;
+}

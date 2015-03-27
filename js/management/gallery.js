@@ -1,5 +1,17 @@
 $(document).ready(function(){
     
+    $(".close-shadowbox").click(function(){
+        $(".shadowbox").fadeOut("slow");
+
+        setTimeout(function(){
+            $(".background-mask").removeClass("mask-active");
+        }, 700);
+
+        setTimeout(function(){
+            $(".background-mask").css("display","none");
+        }, 1000);
+    });
+    
     $("#gallery_img_src").click(function(){
         $(".select-photo-type").css("display","block");
         
@@ -176,14 +188,15 @@ function populateClubGalleries(data){
     var gallery_list = "";
     
     for(var i = 0; i < info.length; i++){
-        gallery_list += '<li onclick="specificGallery(' + info[i]['club_galleryID'] + ')"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"></div></li>';
+        gallery_list += '<li onclick="specificGallery(' + info[i]['club_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li>';
     }
     
     $(".gallery-fan-club").html(gallery_list);
 }
 
-function specificGallery(galleryID){
+function specificGallery(galleryID, galleryName){
     localStorage.setItem("galleryID",galleryID);
+    localStorage.setItem("gallery-name",galleryName.querySelector("#specific-gallery-name").innerHTML);
     
     window.location = "specific-gallery.html";
 }
@@ -203,6 +216,34 @@ function retrieveSpecificGallery(){
 
 function populateSpecificGallery(data){
     var info = JSON.parse(data);
+    var galleryList = "";
+
+    $("#gallery-name").html(localStorage.getItem("gallery-name"));
     
-    console.log(info);
+    for(var i = 0; i < info.length; i++){
+        galleryList += '<div class="column col-3"><img onclick="changeShadowbox(this)" class="gallery-thumb" src="' + info[i]['image_src'] + '" alt="' + info[i]['image_name'] + '" title="' + info[i]['image_name'] + '"/></div>';
+    }
+    
+    galleryList += '<div class="clear"></div>';
+    
+    $(".gallery-content").html(galleryList);
+    
+}
+
+function changeShadowbox(image){
+    $(".shadowbox .image-content .heading-content .main-image-text").html(image.title);
+    $(".shadowbox .main-image").attr("src",image.src);
+    $(".shadowbox .main-image").attr("alt",image.alt);
+    $(".shadowbox .main-image").attr("title",image.title);
+    
+    $(".background-mask").css("display","block");
+    
+    setTimeout(function(){
+        $(".background-mask").addClass("mask-active");
+    }, 200);
+    
+    setTimeout(function(){
+        $(".shadowbox").fadeIn("slow");
+    }, 1000);
+    
 }
