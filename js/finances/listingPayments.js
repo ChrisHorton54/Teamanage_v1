@@ -1,5 +1,5 @@
 function getList(){
-    var playerID = localStorage.getItem('playerID');
+    var playerID = localStorage.getItem('main_playerID');
     
     $.ajax({
         url:"http://teamanage.co.uk/scripts/player/finances.php",
@@ -28,7 +28,7 @@ function produceList(data){
 }
 
 function populateCalender(date){
-    var playerID = localStorage.getItem('playerID');
+    var playerID = localStorage.getItem('main_playerID');
     
     $.ajax({
         url:"http://teamanage.co.uk/scripts/player/finances.php",
