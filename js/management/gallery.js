@@ -317,7 +317,7 @@ function populateClubGalleries(data){
         gallery_list = '<p>There are no galleries at the moment.</p><div class="clear"></div>';
     } else {
         for(var i = 0; i < info.length; i++){
-            gallery_list += '<li onclick="specificGallery(' + info[i]['club_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li><br/>';
+            gallery_list += '<li onclick="specificGallery(' + info[i]['club_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '</h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li><br/>';
         }
     }
     
@@ -344,7 +344,7 @@ function populateFanGalleries(data){
         gallery_list = '<p>There are no galleries at the moment.</p><div class="clear"></div>';
     } else {
         for(var i = 0; i < info.length; i++){
-            gallery_list += '<li onclick="specificGalleryFan(' + info[i]['fan_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '<img class="score-right" src="../../img/arrow-list.png"></h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li><br/>';
+            gallery_list += '<li onclick="specificGalleryFan(' + info[i]['fan_galleryID'] + ',this)"><img style="float:left;width:35%;" src="' + info[i]['gallery_image'] + '" /><h3>' + info[i]['gallery_name'] + '</h3><div class="clear"><h3 id="specific-gallery-name">' + info[i]['gallery_name'] + '</h3></div></li><br/>';
         }
     }
     $(".gallery-fan-club").html(gallery_list);

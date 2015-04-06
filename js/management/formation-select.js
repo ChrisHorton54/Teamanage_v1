@@ -98,11 +98,17 @@ function checkPlayerPositions(data){
     
     localStorage.setItem("formation_selected",info['formation'] );
     
-    $('#formationChange option[value="' + info['formation'] + '"]').attr("selected", "selected");
-    
-    for(i = 0; i < 11; i++){
-        var j = i + 1;
-        $('.player_' + j + ' .player_name option[value="' + info['players'][i]['playerID'] + '"]').attr("selected", "selected");
+    if (info['players'] != "No players"){
+        
+        $('#formationChange option[value="' + info['formation'] + '"]').attr("selected", "selected");
+
+        for(i = 0; i < 11; i++){
+            var j = i + 1;
+            $('.player_' + j + ' .player_name option[value="' + info['players'][i]['playerID'] + '"]').attr("selected", "selected");
+        }
+    } else {
+        $('.view-all').attr('href','#');
+        $('.view-all').css('background','#A1A1A1');
     }
     
     formationChange($("#formationChange :selected").text());
